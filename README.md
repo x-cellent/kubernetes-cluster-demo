@@ -10,7 +10,7 @@ Many cloud providers offer managed Kubernetes services, however the configuratio
 
 
 ### References
-https://opsani.com/blog/kubernetes-cluster-autoscaling-overview/ 
-https://www.digitalocean.com/blog/vanilla-kubernetes-vs-managed-kubernetes/#:~:text=Although%20Kubernetes%20is%20open%20source,maintenance%20of%20the%20Kubernetes%20clusters. 
+- https://opsani.com/blog/kubernetes-cluster-autoscaling-overview/ 
+- https://www.digitalocean.com/blog/vanilla-kubernetes-vs-managed-kubernetes/#:~:text=Although%20Kubernetes%20is%20open%20source,maintenance%20of%20the%20Kubernetes%20clusters. 
 
  
