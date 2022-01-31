@@ -9,6 +9,12 @@ Despite the fact that Kubernetes is free source, many firms who want to use it d
 Many cloud providers offer managed Kubernetes services, however the configuration options and degree of support they provide to their customers vary slightly.
 
 
+### Comparisson 
+- The provider-managed Kubernetes service reduces the time and effort required to administer and maintain a cluster by taking care of the master node.
+
+- You have more control over your cluster using self-managed Kubernetes. You can use various cloud computing services and even you can use your own on-site infrastructure.
+
+
 ### References
 - https://opsani.com/blog/kubernetes-cluster-autoscaling-overview/ 
 - https://www.digitalocean.com/blog/vanilla-kubernetes-vs-managed-kubernetes/#:~:text=Although%20Kubernetes%20is%20open%20source,maintenance%20of%20the%20Kubernetes%20clusters. 
