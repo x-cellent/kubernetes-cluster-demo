@@ -25,7 +25,7 @@ among the tools used to spawn and manage a kubernetes clusters, hereby I have li
 - Prometheus – a monitoring & analyzing system which is extremely useful and informative while being simple to integrate and use.
 
 
-### Infrastruscture details
+### Infrastructure details
 
 ![cluster diagram](images/lb_ingress.png) [1]
 
