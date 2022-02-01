@@ -35,6 +35,11 @@ among the tools used to spawn and manage a kubernetes clusters, hereby I have li
 git clone https://github.com/kubernetes-sigs/kubespray.git
 ```
 
+ingress controller after installing the cluster with kubespray and terraform
+```
+kubectl --kubeconfig=config_master apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.1.1/deploy/static/provider/cloud/deploy.yaml
+``
+
 ### Comparisson 
 - The provider-managed Kubernetes service reduces the time and effort required to administer and maintain a cluster by taking care of the master node.
 
