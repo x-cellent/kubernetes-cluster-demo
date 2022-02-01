@@ -46,7 +46,7 @@ kubectl --kubeconfig=config_master apply -f https://raw.githubusercontent.com/ku
 - You have more control over your cluster using self-managed Kubernetes. You can use various cloud computing services and even you can use your own on-site infrastructure.
 
 ### Testing
-
+![Cluster details summary](images/cluster_nginx_lb.png)
 
 ### References
 - https://opsani.com/blog/kubernetes-cluster-autoscaling-overview/ 
