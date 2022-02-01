@@ -24,6 +24,11 @@ among the tools used to spawn and manage a kubernetes clusters, hereby I have li
 - Kubernetes Dashboard – a web-based user interface that allows users to control and troubleshoot the apps in the cluster, as well as monitor the whole cluster.
 - Prometheus – a monitoring & analyzing system which is extremely useful and informative while being simple to integrate and use.
 
+
+### Infrastruscture details
+
+![cluster diagram](images/lb_ingress.png) [1]
+
 ### Prerequisites 📋
 - Kubespray
 - Ansible
@@ -34,8 +39,30 @@ among the tools used to spawn and manage a kubernetes clusters, hereby I have li
 ```
 git clone https://github.com/kubernetes-sigs/kubespray.git
 ```
+- change infrastructure details for terraform scripts.
+```
+cat contrib/terraform/aws/terraform.tfvars
 
-ingress controller after installing the cluster with kubespray and terraform
+#Bastion Host
+aws_bastion_num  = 1
+aws_bastion_size = "t2.micro"
+
+#Kubernetes Cluster
+aws_kube_master_num       = 2
+aws_kube_master_size      = "t2.small"
+aws_kube_master_disk_size = 50
+
+aws_etcd_num       = 1
+aws_etcd_size      = "t2.micro"
+aws_etcd_disk_size = 50
+
+aws_kube_worker_num       = 2
+aws_kube_worker_size      = "t2.small"
+aws_kube_worker_disk_size = 50
+
+
+```
+- ingress controller after installing the cluster with kubespray and terraform
 ```
 kubectl --kubeconfig=config_master apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.1.1/deploy/static/provider/cloud/deploy.yaml
 ```
@@ -51,5 +78,6 @@ kubectl --kubeconfig=config_master apply -f https://raw.githubusercontent.com/ku
 ### References
 - https://opsani.com/blog/kubernetes-cluster-autoscaling-overview/ 
 - https://www.digitalocean.com/blog/vanilla-kubernetes-vs-managed-kubernetes/#:~:text=Although%20Kubernetes%20is%20open%20source,maintenance%20of%20the%20Kubernetes%20clusters. 
+- [1] https://aws.amazon.com/blogs/opensource/network-load-balancer-nginx-ingress-controller-eks/
 
  
