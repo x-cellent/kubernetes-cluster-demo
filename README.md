@@ -82,6 +82,8 @@ kubectl --kubeconfig=config_master apply -f https://raw.githubusercontent.com/ku
 ### Testing
 ![Cluster details summary](images/cluster_nginx_lb.png)
 
+- Testing with aws-controller lb 
+
 ### References
 - https://opsani.com/blog/kubernetes-cluster-autoscaling-overview/ 
 - https://www.digitalocean.com/blog/vanilla-kubernetes-vs-managed-kubernetes/#:~:text=Although%20Kubernetes%20is%20open%20source,maintenance%20of%20the%20Kubernetes%20clusters. 
