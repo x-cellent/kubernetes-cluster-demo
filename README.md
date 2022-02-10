@@ -37,9 +37,9 @@ among the tools used to spawn and manage a kubernetes clusters, hereby I have li
 ![cluster diagram](images/lb_ingress.png) [1]
 
 ### Prerequisites 📋
-- Kubespray
+- Kops
 - Ansible
-- Terraform
+- AWS account
 
 ### Deployment 
 - Clone kubespray open source project
@@ -71,9 +71,13 @@ aws_kube_worker_disk_size = 50
 
 - Execute ansible on main kubespray directory
 ```
-cd kubespray
+cd kops
 
-ansible-playbook -i inventory --become cluster.yml -e cloud_provider=aws -e ansible_user=INSTANCE_USER -e cloud_provider=aws -e kube_network_plugin=flannel -b --become-user=root --flush-cache -e ansible_ssh_private_key_file=SSH_PRIVATE_FILE
+ansible-playbook create-store
+
+ansible-playbook create.yml
+
+#ansible-playbook -i inventory --become cluster.yml -e cloud_provider=aws -e ansible_user=INSTANCE_USER -e cloud_provider=aws -e kube_network_plugin=flannel -b --become-user=root --flush-cache -e ansible_ssh_private_key_file=SSH_PRIVATE_FILE
 ```
 
 - ingress controller after installing the cluster with kubespray and terraform
