@@ -41,6 +41,17 @@ among the tools used to spawn and manage a kubernetes clusters, hereby I have li
 - Kubernetes Dashboard – a web-based user interface that allows users to control and troubleshoot the apps in the cluster, as well as monitor the whole cluster.
 - Prometheus – a monitoring & analyzing system which is extremely useful and informative while being simple to integrate and use.
 
+### kops stands for Kubernetes Operations.
+"We like to think of it as kubectl for clusters," says the kops GitHub website. kops is a command line interface (CLI) tool that has implemented the major verbs of cluster management. Among the traits that make kops appealing are:
+
+Provisioning that would otherwise have to be done the hard way is now automated.
+It features configuration parameters that are externalized and modifiable.
+Updates to Kubernetes configuration parameters are used.
+Deploying Kubernetes primary nodes in high-availability (HA) mode is made easier.
+Upgrades to Kubernetes versions are supported.
+For dry-runs, a state-sync model was used, as well as automated idempotency.
+Terraform configuration generation capability
+Custom kubectl add-ons are supported.
 
 ### Infrastructure details
 
