@@ -4,13 +4,20 @@
 
 ### Overview 🔧
 
-In order to demonstrate the advantages and disadvantages of managed kubernetes and self managed kubernetes, I will create a self managed kubernetes cluster with Kubespray in this case.
+In order to demonstrate the advantages and disadvantages of managed kubernetes and self managed kubernetes, I will create a self managed kubernetes cluster with Kops.
 
 ### What does it mean to have "managed Kubernetes"?
 
 Despite the fact that Kubernetes is free source, many firms who want to use it don't have the skills or resources to set up and manage the cluster. Managed Kubernetes providers assist those interested in using Kubernetes by providing the necessary support and management for Kubernetes clusters. A managed Kubernetes deployment should offer users a painless control plane, simple deployment options, and ongoing Kubernetes maintenance, allowing them to focus on their company and getting their apps to market.
 
 Many cloud providers offer managed Kubernetes services, however the configuration options and degree of support they provide to their customers vary slightly.
+
+### Self Managed Cluster
+There are numerous advantages and disadvantages of utilizing a self-managed Kubernetes cluster.
+
+You have control over the management layer on a self-managed Kubernetes Cluster as a pro. Because the cluster master is handled by the managed service, fully managed Kubernetes services in the cloud do not allow you to configure it. You get complete access to the cluster master and all other related management components when you deploy your own cluster using kubeadm, kubespray, Kops or even the hard way.
+
+This also gives configuration flexibility, allowing you to setup the cluster and nodes however you wish, rather than having to deal with the configuration options allowed by a managed service.
 
 ### Kubernetes tools to Create and Control Clusters
 among the tools used to spawn and manage a kubernetes clusters, hereby I have listed some of them:
