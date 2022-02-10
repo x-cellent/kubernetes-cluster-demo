@@ -1,0 +1,43 @@
+---
+
+####################
+# Create Kubernetes cluster using Kops
+####################
+
+#- name: set kops S3 bucket variable
+#  shell: "export KOPS_STATE_STORE="
+    
+- name: Configure topology variable
+  set_fact:
+    topology: "public"
+  when: topology != "private"
+
+- name: Configure bastion variables
+  set_fact:
+    bastion: "false"
+    public_ip: "true"
+
+- name: Configure bastion variables
+  set_fact:
+    bastion: "true"
+    public_ip: "false"
+  when: topology == "private"
+
+- name: Configure the cluster
+  shell: "kops create cluster --associate-public-ip={{ public_ip }} --bastion={{ bastion }} --cloud=aws --dns-zone={{ dns_zone }} --master-size={{ master_size }} --master-zones={{ master_zones|default(aws_zones) }} --master-count={{ master_count }} --networking={{ kubernetes_networking }} --node-count={{ node_count }} --node-size={{ node_size }} --target=direct --topology={{ topology }} --zones={{ aws_zones }} --ssh-public-key={{ ssh_public_key }} --name={{ cluster_name }} --state {{ state_store }}"
+
+- name: Create the physical cluster
+  shell: "kops update cluster {{ cluster_name }} --yes --admin --state {{ state_store }}"
+
+- name: add cluster profile
+  shell: kops export kubecfg --admin --state {{ state_store }}
+
+- name: check cluster availability
+  shell: kops validate cluster --wait 10m --state {{ state_store }}
+  
+#- name: Verify that all Kubernetes nodes are ready
+#  shell: kops export kubecfg --admin --state {{ state_store }} && kubectl get nodes | grep "Ready" | wc -l
+#  register: cmd_result
+#  until: cmd_result.stdout.find('{{ node_count + master_count }}') != -1
+#  retries: 20
+#  delay: 60

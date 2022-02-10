@@ -1,0 +1,22 @@
+---
+###########################
+# Setup Kubernetes Cluster
+###########################
+
+- hosts: localhost
+  connection: local
+  tasks:
+  - import_role: 
+      name: lambda-delete
+    tags: [use_lambda,never]
+  - import_role: 
+      name: lambda-install
+    tags: [use_lambda,never]
+  - set_fact:
+      lambda_tags: false
+    tags: [use_lambda,never]
+  - import_role: 
+      name: create-cluster
+    tags: always
+  environment:
+    KOPS_STATE_STORE: "{{ state_store }}"
