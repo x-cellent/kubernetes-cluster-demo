@@ -24,12 +24,9 @@ A managed Kubernetes cluster is preferable to a self-managed one if we take the 
 ### Self Managed Clusters 📋
 There are numerous advantages and disadvantages of utilizing a self-managed Kubernetes cluster.
 
-As a matter of fact, you have control over the management layer on a self-managed Kubernetes Cluster, whereas the master is handled by the managed service. Therefore a fully managed Kubernetes services in the cloud do not allow you to configure it. Moreover, you get complete access to the cluster master and all other related management components when you deploy your own cluster using kubeadm, kubespray, Kops or even the hard way.
+As a matter of fact, you have control over the management layer on a self-managed Kubernetes Cluster, whereas the master is handled by the provider in a fully managed kubernetes service not allowing you to configure it at all. Moreover, you get complete access to the cluster master and all other related management components when you deploy your own cluster using kubeadm, kubespray, Kops or even the hard way.
 
 This also gives configuration flexibility, allowing you to setup the cluster and nodes however you wish, rather than having to deal with the configuration options allowed by a managed service.
-
-
-
 
 ### Kubernetes tools to Create and Control Clusters 📖
 among the tools used to spawn and manage a kubernetes clusters, hereby I have listed some of them:
@@ -145,8 +142,12 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/cont
 
 - You have more control over your cluster using self-managed Kubernetes. You can use various cloud computing services and even you can use your own on-site infrastructure.
 
+
 ### Testing
 ![Cluster details summary](images/cluster_nginx_lb.png)
+
+### Conclusion
+In the end, either approach — managed or unmanaged Kubernetes — will yield a functional Kubernetes environment. Whether one strategy is better for your team than another is determined by your level of Kubernetes expertise, how quickly you want to get your clusters up and running, and how important it is for you to have complete control over how your clusters are designed and configured.
 
 
 ### References
