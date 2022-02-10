@@ -135,7 +135,6 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/cont
 ### Testing
 ![Cluster details summary](images/cluster_nginx_lb.png)
 
-- Testing with aws-controller lb 
 
 ### References
 - https://opsani.com/blog/kubernetes-cluster-autoscaling-overview/ 
