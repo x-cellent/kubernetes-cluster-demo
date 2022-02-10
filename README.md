@@ -51,12 +51,16 @@ among the tools used to spawn and manage a kubernetes clusters, hereby I have li
 - Ansible
 - AWS account
 - docker
+- A dns domain
 
 ### Deployment 
 - Clone kubespray open source project
 ```
 git clone https://github.com/x-cellent/kubernetes-cluster-demo
+
 ```
+- Create a domain for your cluster, otherwise you can use a gossip based domain
+
 - change infrastructure details for kops scripts.
 ```
 cat group_vars/all.yml
