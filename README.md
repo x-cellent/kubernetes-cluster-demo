@@ -109,5 +109,8 @@ kubectl --kubeconfig=config_master apply -f https://raw.githubusercontent.com/ku
 - https://opsani.com/blog/kubernetes-cluster-autoscaling-overview/ 
 - https://www.digitalocean.com/blog/vanilla-kubernetes-vs-managed-kubernetes/#:~:text=Although%20Kubernetes%20is%20open%20source,maintenance%20of%20the%20Kubernetes%20clusters. 
 - [1] https://aws.amazon.com/blogs/opensource/network-load-balancer-nginx-ingress-controller-eks/
+- https://dzone.com/articles/which-managed-kubernetes-is-right-for-me
+- https://containerjournal.com/features/choosing-a-managed-kubernetes-provider/
+- https://www.eficode.com/blog/start-well-with-kubernetes
 
  
