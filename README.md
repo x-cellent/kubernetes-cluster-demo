@@ -19,6 +19,14 @@ You have control over the management layer on a self-managed Kubernetes Cluster 
 
 This also gives configuration flexibility, allowing you to setup the cluster and nodes however you wish, rather than having to deal with the configuration options allowed by a managed service.
 
+
+A managed Kubernetes cluster is preferable to a self-managed one if and only if the following conditions are met:
+
+You wish to remain on a single cloud.
+You do not require the most recent Kubernetes releases.
+You're ready to delegate vulnerability patching to your cloud provider.
+
+
 ### Kubernetes tools to Create and Control Clusters
 among the tools used to spawn and manage a kubernetes clusters, hereby I have listed some of them:
 - Kubeadm – a toolkit providing the best-practice ways to create Kubernetes clusters. It is aimed at ensuring a quick and easy set up of the minimum viable cluster.
