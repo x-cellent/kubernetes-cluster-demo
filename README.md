@@ -14,19 +14,21 @@ Despite the fact that Kubernetes is free source, many firms who want to use it d
 
 Many cloud providers offer managed Kubernetes services, however the configuration options and degree of support they provide to their customers vary slightly.
 
+A managed Kubernetes cluster is preferable to a self-managed one if we take the following into consideration:
+
+- A single cloud
+- You do not require the most recent Kubernetes releases.
+- You're ready to delegate vulnerability patching to your cloud provider.
+
+
 ### Self Managed Clusters 📋
 There are numerous advantages and disadvantages of utilizing a self-managed Kubernetes cluster.
 
-You have control over the management layer on a self-managed Kubernetes Cluster as a pro. Because the cluster master is handled by the managed service, fully managed Kubernetes services in the cloud do not allow you to configure it. You get complete access to the cluster master and all other related management components when you deploy your own cluster using kubeadm, kubespray, Kops or even the hard way.
+As a matter of fact, you have control over the management layer on a self-managed Kubernetes Cluster, whereas the master is handled by the managed service. Therefore a fully managed Kubernetes services in the cloud do not allow you to configure it. Moreover, you get complete access to the cluster master and all other related management components when you deploy your own cluster using kubeadm, kubespray, Kops or even the hard way.
 
 This also gives configuration flexibility, allowing you to setup the cluster and nodes however you wish, rather than having to deal with the configuration options allowed by a managed service.
 
 
-A managed Kubernetes cluster is preferable to a self-managed one if and only if the following conditions are met:
-
-You wish to remain on a single cloud.
-You do not require the most recent Kubernetes releases.
-You're ready to delegate vulnerability patching to your cloud provider.
 
 
 ### Kubernetes tools to Create and Control Clusters 📖
