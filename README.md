@@ -116,7 +116,7 @@ Create cluster
 
 ansible-playbook create.yml
 
-``
+```
 
 - ingress controller after installing the cluster with kubespray and terraform
 ```
