@@ -50,49 +50,77 @@ among the tools used to spawn and manage a kubernetes clusters, hereby I have li
 - Kops
 - Ansible
 - AWS account
+- docker
 
 ### Deployment 
 - Clone kubespray open source project
 ```
-git clone https://github.com/kubernetes-sigs/kubespray.git
+git clone https://github.com/x-cellent/kubernetes-cluster-demo
 ```
-- change infrastructure details for terraform scripts.
+- change infrastructure details for kops scripts.
 ```
-cat contrib/terraform/aws/terraform.tfvars
+cat group_vars/all.yml
+cluster_name: kops-xc.xc-cloud.net #kub-xcellent.xc-cloud.net
+#cluster_name: kubernetes.xc-cloud.net
+state_store: s3://kops-cluster-xc-test
 
-#Bastion Host
-aws_bastion_num  = 1
-aws_bastion_size = "t2.micro"
+## Remote access
+ssh_public_key: ~/.ssh/id_rsa.pub
 
-#Kubernetes Cluster
-aws_kube_master_num       = 2
-aws_kube_master_size      = "t2.small"
-aws_kube_master_disk_size = 50
 
-aws_etcd_num       = 1
-aws_etcd_size      = "t2.micro"
-aws_etcd_disk_size = 50
+## Regions / Availability zones
+aws_region: eu-central-1
+aws_zones: eu-central-1a,eu-central-1b,eu-central-1c
+# Use master_zones if you want your masters in different zones than worker nodes.
+# Useful especially when you want 1 master in single zone but workers in several zones.
+# When not defined, aws_zones will be sued instead
+master_zones: eu-central-1a,eu-central-1b,eu-central-1c
+#master_zones: eu-central-1a
 
-aws_kube_worker_num       = 2
-aws_kube_worker_size      = "t2.small"
-aws_kube_worker_disk_size = 50
+
+## Network
+dns_zone: kops-xc.xc-cloud.net
+network_cidr: 172.16.0.0/16
+#kubernetes_networking: amazonvpc
+kubernetes_networking: amazon-vpc-routed-eni 
+#kubernetes_networking: weave
+# Topology must be either public or private
+topology: private
+bastion: true
+
+# Master configuration
+master_size: t2.small
+master_count: 3
+#master_volume_size: 50
+# Use master_max_price if you want to use spot instances.
+# Useful to reduce cost during testing
+#master_max_price: 0.05
+# Use master_profile if you want custom iam policies
+#master_profile: arn:aws:iam::1234567890108:instance-profile/kops-custom-master-role
+
+# Node configuration
+node_size: t2.small
+node_count: 3
 
 ```
 
-- Execute ansible on main kubespray directory
+- Create S3 bucket to store kops cluster state
 ```
-cd kops
 
 ansible-playbook create-store
 
+```
+
+Create cluster 
+```
+
 ansible-playbook create.yml
 
-#ansible-playbook -i inventory --become cluster.yml -e cloud_provider=aws -e ansible_user=INSTANCE_USER -e cloud_provider=aws -e kube_network_plugin=flannel -b --become-user=root --flush-cache -e ansible_ssh_private_key_file=SSH_PRIVATE_FILE
-```
+``
 
 - ingress controller after installing the cluster with kubespray and terraform
 ```
-kubectl --kubeconfig=config_master apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.1.1/deploy/static/provider/cloud/deploy.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.1.1/deploy/static/provider/cloud/deploy.yaml
 ```
 
 ### Comparisson 
