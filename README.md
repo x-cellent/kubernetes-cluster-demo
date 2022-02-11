@@ -137,6 +137,11 @@ ansible-playbook create.yml
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.1.1/deploy/static/provider/cloud/deploy.yaml
 ```
 
+- Add cluster autoscaler
+```
+kops edit cluster CLUSTER_NAME
+```
+
 ### Comparisson 
 - The provider-managed Kubernetes service reduces the time and effort required to administer and maintain a cluster by taking care of the master node.
 
