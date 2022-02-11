@@ -4,22 +4,11 @@
   shell: 'kops get cluster --name {{ cluster_name }} -o yaml > /tmp/{{ cluster_name }}-cluster-conf.yaml'
   changed_when: false
 
-- name: Configure IAM ContainerRegistry 
-  lineinfile:
-    path: /tmp/{{ cluster_name }}-cluster-conf.yaml
-    regexp: '^(\s+)allowContainerRegistry:'
-    line: '\1allowContainerRegistry: {{ iam.allow_container_registry }}'
-    backrefs: yes
-  when: iam.allow_container_registry is defined
-  notify: 'Push cluster config'
-
-- name: Configure IAM legacy 
-  lineinfile:
-    path: /tmp/{{ cluster_name }}-cluster-conf.yaml
-    regexp: '^(\s+)legacy:'
-    line: '\1legacy: {{ iam.legacy }}'
-    backrefs: yes
-  when: iam.legacy is defined
+- name: adding cluster config
+  blockinfile:
+    path: "/tmp/{{ cluster_name }}-cluster-conf.yaml"
+    insertafter: "spec:"
+    block: "{{ lookup('file', '{{ playbook_dir }}/config_addons.yml') | indent(width=2, indentfirst=True) }}"
   notify: 'Push cluster config'
 
 - name: Run handlers

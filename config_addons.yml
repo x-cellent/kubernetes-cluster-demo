@@ -1,0 +1,46 @@
+additionalPolicies:
+  master: |
+    [
+      {
+        "Effect": "Allow",
+        "Action": [
+          "autoscaling:DescribeAutoScalingGroups",
+          "autoscaling:DescribeAutoScalingInstances",
+          "autoscaling:DescribeLaunchConfigurations",
+          "autoscaling:DescribeTags",
+          "autoscaling:SetDesiredCapacity",
+          "autoscaling:TerminateInstanceInAutoScalingGroup",
+          "elasticloadbalancing:ModifyLoadBalancerAttributes"
+        ],
+        "Resource": ["*"]
+      }
+    ]
+  node: |
+    [
+      {
+        "Effect": "Allow",
+        "Action": [
+          "autoscaling:DescribeAutoScalingGroups",
+          "autoscaling:DescribeAutoScalingInstances",
+          "autoscaling:DescribeLaunchConfigurations",
+          "autoscaling:DescribeTags",
+          "autoscaling:SetDesiredCapacity",
+          "autoscaling:TerminateInstanceInAutoScalingGroup",
+          "elasticloadbalancing:ModifyLoadBalancerAttributes"
+        ],
+        "Resource": ["*"]
+      }
+    ]
+
+clusterAutoscaler:
+  awsUseStaticInstanceList: false
+  balanceSimilarNodeGroups: false
+  cpuRequest: 100m
+  enabled: true
+  expander: least-waste
+  memoryRequest: 300Mi
+  newPodScaleUpDelay: 0s
+  scaleDownDelayAfterAdd: 10m0s
+  scaleDownUtilizationThreshold: "0.5"
+  skipNodesWithLocalStorage: true
+  skipNodesWithSystemPods: true
