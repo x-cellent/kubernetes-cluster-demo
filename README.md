@@ -137,9 +137,13 @@ ansible-playbook create.yml
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.1.1/deploy/static/provider/cloud/deploy.yaml
 ```
 
+- Get cluster config
+```
+kops get cluster --state s3://kops-cluster-xc-test -o yaml > config_test_new.yml
+```
 - Add cluster autoscaler
 ```
-kops edit cluster CLUSTER_NAME
+sed -e 's/^/  /' autoscaler.yaml >> config_test_new.yml
 ```
 
 ### Comparisson 
