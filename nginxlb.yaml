@@ -1,0 +1,80 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: text-responder
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: text-responder2 #cpu-demo-deployment
+  namespace: text-responder
+  labels:
+    app: text-responder2
+spec:
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 2
+  replicas: 2
+  progressDeadlineSeconds: 600
+  minReadySeconds: 0
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: text-responder2
+  template:
+    metadata:
+      labels:
+        app: text-responder2
+    spec:
+      restartPolicy: Always
+      containers:
+      - name: text-responder2
+        image: pleshakov/coffee:decaf #pleshakov/coffee #infrastructureascode/hello-world #hashicorp/http-echo:0.2.3
+        imagePullPolicy: Always
+        resources:
+          limits:
+            cpu: "200m"
+          requests:
+            cpu: "100m"
+        #command: ["stress"]
+        #args:
+        #- --cpu
+        #- "1"
+        #- "-text=Hello Auto HPA"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: text-responder2
+  namespace: text-responder
+spec:
+  ports:
+  - port: 80
+    targetPort: 8080
+  selector:
+    app: text-responder2
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: example-lb-3
+  namespace: text-responder
+  annotations:
+    #nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    #nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
+    #nginx.ingress.kubernetes.io/rewrite-target: /
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+  - host: a637124eb31684603893d127d36e1dee-1733575816.eu-central-1.elb.amazonaws.com
+    http:
+      paths:
+      - path: /infra
+        pathType: Prefix
+        backend:
+          service:
+            name: text-responder2
+            port:
+              number: 80
