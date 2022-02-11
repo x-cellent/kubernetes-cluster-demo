@@ -43,7 +43,7 @@ among the tools used to spawn and manage a kubernetes clusters, hereby I have li
 ### kops stands for Kubernetes Operations.
 "We like to think of it as kubectl for clusters," says the kops GitHub website. kops is a command line interface (CLI) tool that has implemented the major verbs of cluster management. Among the traits that make kops appealing are:
 
-Provisioning that would otherwise have to be done the hard way is now automated.
+Provisioning that would otherwise have to be done the hard way, which is now more automated.
 It features configuration parameters that are externalized and modifiable.
 Updates to Kubernetes configuration parameters are used.
 Deploying Kubernetes primary nodes in high-availability (HA) mode is made easier.
@@ -135,6 +135,11 @@ ansible-playbook create.yml
 - ingress controller after installing the cluster with kubespray and terraform
 ```
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.1.1/deploy/static/provider/cloud/deploy.yaml
+```
+
+- Add cluster autoscaler
+```
+kops edit cluster CLUSTER_NAME
 ```
 
 ### Comparisson 
