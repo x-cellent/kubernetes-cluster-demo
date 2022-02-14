@@ -54,7 +54,7 @@ Custom kubectl add-ons are supported.
 
 ### Infrastructure details
 
-![cluster diagram](images/lb_ingress.png) [1](https://aws.amazon.com/blogs/opensource/network-load-balancer-nginx-ingress-controller-eks/)
+![cluster diagram](images/lb_ingress.png) [[1]](https://aws.amazon.com/blogs/opensource/network-load-balancer-nginx-ingress-controller-eks/)
 
 ### Prerequisites 📋
 - Kops
