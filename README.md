@@ -189,7 +189,7 @@ ansible-playbook create.yml
 
 ```
 
-## LB deployment
+#### LB deployment
 - Afterwards we can deploy a load balancer to our cluster, for which we can have multiple choices. In this example we will configure an ingress nginx load balancer.
 ```
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.1.1/deploy/static/provider/cloud/deploy.yaml
