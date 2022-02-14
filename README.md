@@ -125,25 +125,72 @@ ansible-playbook create-store
 
 ```
 
+- You can add and/or delete ddons such as autoscaling, metrics server, etc, by adding them into [config_addons.yml](https://github.com/x-cellent/kubernetes-cluster-demo/blob/main/config_addons.yml)
+```
+metricsServer:
+  enabled: true
+  
+additionalPolicies:
+  master: |
+    [
+      {
+        "Effect": "Allow",
+        "Action": [
+          "autoscaling:DescribeAutoScalingGroups",
+          "autoscaling:DescribeAutoScalingInstances",
+          "autoscaling:DescribeLaunchConfigurations",
+          "autoscaling:DescribeTags",
+          "autoscaling:SetDesiredCapacity",
+          "autoscaling:TerminateInstanceInAutoScalingGroup",
+          "elasticloadbalancing:ModifyLoadBalancerAttributes"
+        ],
+        "Resource": ["*"]
+      }
+    ]
+  node: |
+    [
+      {
+        "Effect": "Allow",
+        "Action": [
+          "autoscaling:DescribeAutoScalingGroups",
+          "autoscaling:DescribeAutoScalingInstances",
+          "autoscaling:DescribeLaunchConfigurations",
+          "autoscaling:DescribeTags",
+          "autoscaling:SetDesiredCapacity",
+          "autoscaling:TerminateInstanceInAutoScalingGroup",
+          "elasticloadbalancing:ModifyLoadBalancerAttributes"
+        ],
+        "Resource": ["*"]
+      }
+    ]
+clusterAutoscaler:
+  awsUseStaticInstanceList: false
+  balanceSimilarNodeGroups: false
+  cpuRequest: 100m
+  enabled: true
+  expander: least-waste
+  memoryRequest: 300Mi
+  newPodScaleUpDelay: 0s
+  scaleDownDelayAfterAdd: 10m0s
+  scaleDownUtilizationThreshold: "0.5"
+  skipNodesWithLocalStorage: true
+  skipNodesWithSystemPods: true
+
+kubelet:
+  anonymousAuth: false
+  authorizationMode: Webhook
+  authenticationTokenWebhook: true
+```
+
 Create cluster 
 ```
 
 ansible-playbook create.yml
 
 ```
-
 - ingress controller after installing the cluster with kubespray and terraform
 ```
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.1.1/deploy/static/provider/cloud/deploy.yaml
-```
-
-- Get cluster config
-```
-kops get cluster --state s3://kops-cluster-xc-test -o yaml > config_test_new.yml
-```
-- Add cluster autoscaler
-```
-sed -e 's/^/  /' autoscaler.yaml >> config_test_new.yml
 ```
 
 ### Comparisson 
