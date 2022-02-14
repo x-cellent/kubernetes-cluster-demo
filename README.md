@@ -122,7 +122,7 @@ node_count: 3
 
 - Create S3 bucket to store kops cluster state
 ```
-ansible-playbook create-store
+ansible-playbook create-s3.yaml
 ```
 
 - You can add and/or delete ddons such as autoscaling, metrics server, etc, by adding them into [config_addons.yml](https://github.com/x-cellent/kubernetes-cluster-demo/blob/main/config_addons.yml)
@@ -184,7 +184,7 @@ kubelet:
 
 Create cluster 
 ```
-ansible-playbook create-s3.yaml
+ansible-playbook create.yaml
 ```
 #### LB deployment
 
