@@ -213,6 +213,11 @@ For this example, we will start with ingress-nginx, as it is a reliable solution
 ```
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.1.1/deploy/static/provider/cloud/deploy.yaml
 ```
+Aftwerwards, we have to find our LoadBalancer url to point our ingress controller to, for which we will deploy a sample application: 
+```
+export LB_URL="YOUR_LB_URL"
+kubectl apply -f nginxlb.yaml
+```
 
 ### Comparisson 
 - The provider-managed Kubernetes service reduces the time and effort required to administer and maintain a cluster by taking care of the master node.
