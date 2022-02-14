@@ -190,7 +190,7 @@ ansible-playbook create-s3.yaml
 
 Running a containerized application frequently necessitates access to network services in order to route external traffic to the Kubernetes cluster. Network services, like Kubernetes deployments, are typically run at the frontend of the application, handling uneven routing while providing an abstract way to dynamically access a group of services in the Kubernetes cluster.
 
-- Ingress Solutions within a Cluster
+##### Ingress Solutions within a Cluster
 
 In-cluster ingress solutions have the advantage of being readily scaled with the Kubernetes environment because they are defined as a pod in the Kubernetes cluster. In addition, cloud providers have little influence on cluster ingress solutions. Moreover, they are typically open-source, facilitating the choice for an ingress controller that best matches the organization's load balancing and security requirements.
 
@@ -198,7 +198,7 @@ GLBC (GCE L7 Load Balancer) and ingress-nginx controllers are currently supporte
 
 The majority of these third-party in-cluster ingress solutions are listed on the [Kubernetes website](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/).
 
-- Ingress solutions that are hosted in the cloud
+##### Ingress solutions that are hosted in the cloud
 
 Cloud providers handle all of the organization's operational ingress workflows, based on the ingress controller's feature set. Many additionally have extensive functionality for securing the Kubernetes application via the application load balancer's second layer.
 
