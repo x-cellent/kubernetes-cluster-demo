@@ -1,3 +1,6 @@
+metricsServer:
+  enabled: true
+  
 additionalPolicies:
   master: |
     [
@@ -44,3 +47,8 @@ clusterAutoscaler:
   scaleDownUtilizationThreshold: "0.5"
   skipNodesWithLocalStorage: true
   skipNodesWithSystemPods: true
+
+kubelet:
+  anonymousAuth: false
+  authorizationMode: Webhook
+  authenticationTokenWebhook: true
