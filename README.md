@@ -64,7 +64,7 @@ Custom kubectl add-ons are supported.
 - A dns domain
 
 ### Deployment 
-- Clone kubespray open source project
+- Clone this repo in your local environment:
 ```
 git clone https://github.com/x-cellent/kubernetes-cluster-demo
 
@@ -120,9 +120,7 @@ node_count: 3
 
 - Create S3 bucket to store kops cluster state
 ```
-
 ansible-playbook create-store
-
 ```
 
 - You can add and/or delete ddons such as autoscaling, metrics server, etc, by adding them into [config_addons.yml](https://github.com/x-cellent/kubernetes-cluster-demo/blob/main/config_addons.yml)
@@ -184,12 +182,21 @@ kubelet:
 
 Create cluster 
 ```
-
 ansible-playbook create.yml
-
 ```
-
 #### LB deployment
+
+Running a containerized application frequently necessitates access to network services in order to route external traffic to the Kubernetes cluster. Network services, like Kubernetes deployments, are typically run at the frontend of the application, handling uneven routing while providing an abstract way to dynamically access a group of services in the Kubernetes cluster.
+
+- Ingress Solutions within a Cluster
+In-cluster ingress solutions have the advantage of being readily scaled with the Kubernetes environment because they are defined as a pod in the Kubernetes cluster. In addition, cloud providers have little influence on cluster ingress solutions. They are typically open-source, facilitating the choice for an ingress controller that best matches the organization's load balancing and security requirements.
+
+GLBC (GCE L7 Load Balancer) and ingress-nginx controllers are currently supported by default in Kubernetes. Ingress controllers must be installed separately from these controllers prior to implementation.
+
+The majority of these third-party in-cluster ingress solutions are listed on the [Kubernetes website](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/).
+
+https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/
+
 - Afterwards we can deploy a load balancer to our cluster, for which we can have multiple choices. In this example we will configure an ingress nginx load balancer.
 ```
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.1.1/deploy/static/provider/cloud/deploy.yaml
