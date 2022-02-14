@@ -182,7 +182,7 @@ kubelet:
 
 Create cluster 
 ```
-ansible-playbook create.yml
+ansible-playbook create-s3.yaml
 ```
 #### LB deployment
 
