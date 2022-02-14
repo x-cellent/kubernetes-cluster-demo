@@ -41,20 +41,22 @@ among the tools used to spawn and manage a kubernetes clusters, hereby I have li
 - Prometheus – a monitoring & analyzing system which is extremely useful and informative while being simple to integrate and use.
 
 ### kops stands for Kubernetes Operations.
-"We like to think of it as kubectl for clusters," says the kops GitHub website. kops is a command line interface (CLI) tool that has implemented the major verbs of cluster management. Among the traits that make kops appealing are:
+"We like to think of it as kubectl for clusters," says the kops GitHub website. kops is a command line interface (CLI) tool that has implemented the major verbs of cluster management. 
 
-Provisioning that would otherwise have to be done the hard way, which is now more automated.
-It features configuration parameters that are externalized and modifiable.
-Updates to Kubernetes configuration parameters are used.
-Deploying Kubernetes primary nodes in high-availability (HA) mode is made easier.
-Upgrades to Kubernetes versions are supported.
-For dry-runs, a state-sync model was used, as well as automated idempotency.
-Terraform configuration generation capability
-Custom kubectl add-ons are supported.
+Among the traits that make kops appealing are:
+
+- Much more automated than Kubernetes "the hard way":
+- It features configuration parameters that are externalized and modifiable.
+- Updates to Kubernetes configuration parameters are used.
+- Deploying Kubernetes primary nodes in high-availability (HA) mode is made easier.
+- Upgrades to Kubernetes versions are supported.
+- For dry-runs, a state-sync model was used, as well as automated idempotency.
+- Terraform configuration generation capability
+- Custom kubectl add-ons are supported.
 
 ### Infrastructure details
 
-![cluster diagram](images/lb_ingress.png) [1]
+![cluster diagram](images/lb_ingress.png) [[1]](https://aws.amazon.com/blogs/opensource/network-load-balancer-nginx-ingress-controller-eks/)
 
 ### Prerequisites 📋
 - Kops
@@ -64,7 +66,7 @@ Custom kubectl add-ons are supported.
 - A dns domain
 
 ### Deployment 
-- Clone kubespray open source project
+- Clone this repo in your local environment:
 ```
 git clone https://github.com/x-cellent/kubernetes-cluster-demo
 
@@ -120,9 +122,7 @@ node_count: 3
 
 - Create S3 bucket to store kops cluster state
 ```
-
-ansible-playbook create-store
-
+ansible-playbook create-s3.yaml
 ```
 
 - You can add and/or delete ddons such as autoscaling, metrics server, etc, by adding them into [config_addons.yml](https://github.com/x-cellent/kubernetes-cluster-demo/blob/main/config_addons.yml)
@@ -184,22 +184,45 @@ kubelet:
 
 Create cluster 
 ```
-
-ansible-playbook create.yml
-
+ansible-playbook create.yaml
 ```
-
 #### LB deployment
-- Afterwards we can deploy a load balancer to our cluster, for which we can have multiple choices. In this example we will configure an ingress nginx load balancer.
+
+Running a containerized application frequently necessitates access to network services in order to route external traffic to the Kubernetes cluster. Network services, like Kubernetes deployments, are typically run at the frontend of the application, handling uneven routing while providing an abstract way to dynamically access a group of services in the Kubernetes cluster.
+
+#### Ingress Solutions within a Cluster
+
+In-cluster ingress solutions have the advantage of being readily scaled with the Kubernetes environment because they are defined as a pod in the Kubernetes cluster. In addition, cloud providers have little influence on cluster ingress solutions. Moreover, they are typically open-source, facilitating the choice for an ingress controller that best matches the organization's load balancing and security requirements.
+
+GLBC (GCE L7 Load Balancer) and ingress-nginx controllers are currently supported by default in Kubernetes. Ingress controllers must be installed separately from these controllers prior to implementation.
+
+The majority of these third-party in-cluster ingress solutions are listed on the [Kubernetes website](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/).
+
+#### Ingress solutions that are hosted in the cloud
+
+Cloud providers handle all of the organization's operational ingress workflows, based on the ingress controller's feature set. Many additionally have extensive functionality for securing the Kubernetes application via the application load balancer's second layer.
+
+For example, by default, AWS Ingress Controller builds an Application Load Balancer, which works smoothly with the AWS cloud to provide load balancing to pods without requiring access to nodes or proxy configurations.
+
+However, when these technologies are implemented in a hybrid cloud. These become more difficult to manage because each provider will have a distinct solution.
+In comparisson to cloud based ingress solutions, in-cluster ingress solutions take less time to construct and update clusters with tight health checks and cross namespace, which can be a problem with AWS and GCE ingress controllers because each namespace requires a new instance of Ingress. Compatibility with self managed clusters is not always the case.
+
+For this example, we will start with ingress-nginx, as it is a reliable solution for getting started with routing. NGINX Inc. also offers a variety of controllers with varying levels of capability, depending on the size of the company.
+
+- Next, the installation of an lb  will demonstrate how to deploy a load balancer to our cluster, for which we can have multiple choices. In this example we will configure an ingress nginx load balancer as well as the open source GLBC Load Balancer.
 ```
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.1.1/deploy/static/provider/cloud/deploy.yaml
+```
+Aftwerwards, we have to find our LoadBalancer url to point our ingress controller to, for which we will deploy a sample application: 
+```
+export LB_URL="YOUR_LB_URL"
+kubectl apply -f nginxlb.yaml
 ```
 
 ### Comparisson 
 - The provider-managed Kubernetes service reduces the time and effort required to administer and maintain a cluster by taking care of the master node.
 
-- You have more control over your cluster using self-managed Kubernetes. You can use various cloud computing services and even you can use your own on-site infrastructure.
-
+- You have more control over your cluster using self-managed Kubernetes (flexibility). You can use various cloud computing services and even you can use your own on-site infrastructure.
 
 ### Testing
 ![Cluster details summary](images/cluster_nginx_lb.png)
@@ -215,5 +238,8 @@ In the end, either approach — managed or unmanaged Kubernetes — will yield a
 - https://dzone.com/articles/which-managed-kubernetes-is-right-for-me
 - https://containerjournal.com/features/choosing-a-managed-kubernetes-provider/
 - https://www.eficode.com/blog/start-well-with-kubernetes
+- https://kubevious.io/blog/post/comparing-kubernetes-ingress-solutions-which-one-is-right-for-you
+
+
 
  
