@@ -198,7 +198,7 @@ The majority of these third-party in-cluster ingress solutions are listed on the
 
 - Ingress solutions that are hosted in the cloud
 
-  -Cloud providers handle all of the organization's operational ingress workflows, based on the ingress controller's feature set. Many additionally have extensive functionality for securing the Kubernetes application via the application load balancer's second layer.
+Cloud providers handle all of the organization's operational ingress workflows, based on the ingress controller's feature set. Many additionally have extensive functionality for securing the Kubernetes application via the application load balancer's second layer.
 
 For example, by default, AWS Ingress Controller builds an Application Load Balancer, which works smoothly with the AWS cloud to provide load balancing to pods without requiring access to nodes or proxy configurations.
 
@@ -215,8 +215,7 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/cont
 ### Comparisson 
 - The provider-managed Kubernetes service reduces the time and effort required to administer and maintain a cluster by taking care of the master node.
 
-- You have more control over your cluster using self-managed Kubernetes. You can use various cloud computing services and even you can use your own on-site infrastructure.
-
+- You have more control over your cluster using self-managed Kubernetes (flexibility). You can use various cloud computing services and even you can use your own on-site infrastructure.
 
 ### Testing
 ![Cluster details summary](images/cluster_nginx_lb.png)
@@ -232,5 +231,8 @@ In the end, either approach — managed or unmanaged Kubernetes — will yield a
 - https://dzone.com/articles/which-managed-kubernetes-is-right-for-me
 - https://containerjournal.com/features/choosing-a-managed-kubernetes-provider/
 - https://www.eficode.com/blog/start-well-with-kubernetes
+- https://kubevious.io/blog/post/comparing-kubernetes-ingress-solutions-which-one-is-right-for-you
+
+
 
  
