@@ -1,5 +1,11 @@
+certManager:
+  enabled: true
 metricsServer:
   enabled: true
+  insecure: false
+  
+iam:
+  useServiceAccountExternalPermissions: true
   
 additionalPolicies:
   master: |
@@ -38,10 +44,10 @@ additionalPolicies:
 clusterAutoscaler:
   awsUseStaticInstanceList: false
   balanceSimilarNodeGroups: false
-  cpuRequest: 100m
+  cpuRequest: 50m
   enabled: true
   expander: least-waste
-  memoryRequest: 300Mi
+  memoryRequest: 50Mi
   newPodScaleUpDelay: 0s
   scaleDownDelayAfterAdd: 10m0s
   scaleDownUtilizationThreshold: "0.5"
