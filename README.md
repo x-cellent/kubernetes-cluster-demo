@@ -198,7 +198,7 @@ The majority of these third-party in-cluster ingress solutions are listed on the
 
 - Ingress solutions that are hosted in the cloud
 
-Cloud providers handle all of the organization's operational ingress workflows, based on the ingress controller's feature set. Many additionally have extensive functionality for securing the Kubernetes application via the application load balancer's second layer.
+  -Cloud providers handle all of the organization's operational ingress workflows, based on the ingress controller's feature set. Many additionally have extensive functionality for securing the Kubernetes application via the application load balancer's second layer.
 
 For example, by default, AWS Ingress Controller builds an Application Load Balancer, which works smoothly with the AWS cloud to provide load balancing to pods without requiring access to nodes or proxy configurations.
 
