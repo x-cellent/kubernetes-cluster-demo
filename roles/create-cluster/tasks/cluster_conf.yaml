@@ -11,5 +11,13 @@
     block: "{{ lookup('file', '{{ playbook_dir }}/config_addons.yml') | indent(width=2, indentfirst=True) }}"
   notify: 'Push cluster config'
 
+- name: Configure Classic LB to be NLB for masters
+  lineinfile:
+    path: /tmp/{{ cluster_name }}-cluster-conf.yaml
+    regexp: '^(\s+)class:'
+    line: '\1class: Network'
+    backrefs: yes
+  notify: 'Push cluster config'
+
 - name: Run handlers
   meta: flush_handlers
