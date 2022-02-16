@@ -190,7 +190,7 @@ Create cluster
 ansible-playbook create.yaml
 ```
 
-Moreover, the kubectl profile will be added automatically and it will take some minutes to initilize.
+Moreover, the kubectl profile will be added automatically and it will take some minutes to initialize.
 
 #### LB deployment
 
