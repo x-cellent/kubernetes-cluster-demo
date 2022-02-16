@@ -4,5 +4,11 @@
 # Delete Kubernetes cluster using Kops
 ####################
 
+- name: Check if cluster exists
+  shell: kops get cluster {{ cluster_name }} --state {{ state_store }}
+  register: result
+  ignore_errors: true
+
 - name: Delete the cluster
   shell: "kops delete cluster {{ cluster_name }} --state {{ state_store }} --yes"
+  when: result.rc == 0
