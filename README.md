@@ -185,10 +185,13 @@ kubelet:
   authenticationTokenWebhook: true
 ```
 
-Create cluster 
+Create cluster
 ```
 ansible-playbook create.yaml
 ```
+
+Moreover, the kubectl profile will be added automatically and it will take some minutes to initialize.
+
 #### LB deployment
 
 Running a containerized application frequently necessitates access to network services in order to route external traffic to the Kubernetes cluster. Network services, like Kubernetes deployments, are typically run at the frontend of the application, handling uneven routing while providing an abstract way to dynamically access a group of services in the Kubernetes cluster.
