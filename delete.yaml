@@ -8,3 +8,4 @@
   connection: local
   roles:
     - delete-cluster
+    - delete-state-store
