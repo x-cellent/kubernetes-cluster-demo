@@ -3,21 +3,19 @@
 - name: Fetch current instance groups config
   shell: 'kops get instancegroups --name {{ cluster_name }} -o yaml > /tmp/{{ cluster_name }}-ig-conf.yaml'
   changed_when: false
-
+  
 - name: Configure node min instances
-  lineinfile:
+  ansible.builtin.replace:
     path: /tmp/{{ cluster_name }}-ig-conf.yaml
-    regexp: '^(\s+)minSize:'
-    line: '\1minSize: {{ node_autoscaler_min }}'
-    backrefs: yes
+    regexp: '  minSize: [0-9].*'
+    replace: '  minSize: {{ node_autoscaler_min }}'
   notify: 'Push instance groups config'
 
-- name:	Configure node max instances
-  lineinfile:
+- name: Configure node max instances
+  ansible.builtin.replace:
     path: /tmp/{{ cluster_name }}-ig-conf.yaml
-    regexp: '^(\s+)maxSize:'
-    line: '\1maxSize: {{ node_autoscaler_max }}'
-    backrefs: yes
+    regexp: '  maxSize: [0-9].*'
+    replace: '  maxSize: {{ node_autoscaler_max }}'
   notify: 'Push instance groups config'
 
 - name: Run handlers
