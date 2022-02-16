@@ -3,7 +3,7 @@ certManager:
 metricsServer:
   enabled: true
   insecure: false
-  
+
 additionalPolicies:
   master: |
     [
@@ -16,7 +16,26 @@ additionalPolicies:
           "autoscaling:DescribeTags",
           "autoscaling:SetDesiredCapacity",
           "autoscaling:TerminateInstanceInAutoScalingGroup",
-          "elasticloadbalancing:ModifyLoadBalancerAttributes"
+          "elasticloadbalancing:ModifyLoadBalancerAttributes",
+          "acm:ListCertificates",
+          "acm:DescribeCertificate",
+          "autoscaling:DescribeAutoScalingGroups",
+          "autoscaling:DescribeLoadBalancerTargetGroups",
+          "autoscaling:AttachLoadBalancers",
+          "autoscaling:DetachLoadBalancers",
+          "autoscaling:DetachLoadBalancerTargetGroups",
+          "autoscaling:AttachLoadBalancerTargetGroups",
+          "cloudformation:*",
+          "elasticloadbalancing:*",
+          "elasticloadbalancingv2:*",
+          "ec2:DescribeInstances",
+          "ec2:DescribeSubnets",
+          "ec2:DescribeSecurityGroups",
+          "ec2:DescribeRouteTables",
+          "ec2:DescribeVpcs",
+          "iam:GetServerCertificate",
+          "iam:ListServerCertificates"
+
         ],
         "Resource": ["*"]
       }
@@ -32,7 +51,25 @@ additionalPolicies:
           "autoscaling:DescribeTags",
           "autoscaling:SetDesiredCapacity",
           "autoscaling:TerminateInstanceInAutoScalingGroup",
-          "elasticloadbalancing:ModifyLoadBalancerAttributes"
+          "elasticloadbalancing:ModifyLoadBalancerAttributes",
+          "acm:ListCertificates",
+          "acm:DescribeCertificate",
+          "autoscaling:DescribeAutoScalingGroups",
+          "autoscaling:DescribeLoadBalancerTargetGroups",
+          "autoscaling:AttachLoadBalancers",
+          "autoscaling:DetachLoadBalancers",
+          "autoscaling:DetachLoadBalancerTargetGroups",
+          "autoscaling:AttachLoadBalancerTargetGroups", 
+          "cloudformation:*",
+          "elasticloadbalancing:*",
+          "elasticloadbalancingv2:*",
+          "ec2:DescribeInstances",
+          "ec2:DescribeSubnets",
+          "ec2:DescribeSecurityGroups",
+          "ec2:DescribeRouteTables",
+          "ec2:DescribeVpcs",
+          "iam:GetServerCertificate",
+          "iam:ListServerCertificates"
         ],
         "Resource": ["*"]
       }
