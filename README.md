@@ -222,6 +222,7 @@ export LB_URL="YOUR_LB_URL"
 kubectl apply -f nginxlb.yaml
 ```
 ### Testing
+
 We have successfully deployed the sample app as per the image below:
 
 ![Cluster details summary](images/cluster_nginx_lb.png)
