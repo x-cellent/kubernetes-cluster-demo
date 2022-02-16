@@ -26,9 +26,8 @@ A managed Kubernetes cluster is preferable to a self-managed one if we take the 
 
 
 ### Self Managed Clusters 📋
-There are numerous advantages and disadvantages of utilizing a self-managed Kubernetes cluster.
 
-As a matter of fact, you have control over the management layer on a self-managed Kubernetes Cluster, whereas the master is handled by the provider in a fully managed kubernetes service not allowing you to configure it at all. Moreover, you get complete access to the cluster master and all other related management components when you deploy your own cluster using kubeadm, kubespray, Kops or even the hard way.
+You have control over the management layer on a self-managed Kubernetes Cluster, whereas the master is handled by the provider in a fully managed kubernetes service not allowing you to configure it at all. Moreover, you get complete access to the cluster master and all other related management components when you deploy your own cluster using kubeadm, kubespray, Kops or even the hard way.
 
 This also gives configuration flexibility, allowing you to setup the cluster and nodes however you wish, rather than having to deal with the configuration options allowed by a managed service.
 
