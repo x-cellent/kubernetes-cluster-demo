@@ -6,6 +6,10 @@
 
 Kubernetes clusters can be controlled by the user (self-managed) or by a cloud service provider (Provider managed Kubernetes). Unless you have a compelling technical or legal reason to use an on-premises self-managed cluster, consider a managed Kubernetes service. Self-managed clusters necessitate a high level of specialized expertise among your staff, as well as continuous infrastructure and maintenance costs.
 
+The first issue most teams ask themselves when planning a Kubernetes installation is whether to employ a managed Kubernetes service – such as Amazon AKS, Azure Kubernetes Service, or another public cloud-based Kubernetes platform – or to deploy and operate Kubernetes on their own infrastructure. Kubernetes provider handles at least some of the provisioning and maintenance duties required to keep clusters running. Therefore, a managed Kubernetes service is nearly always easier to set up and maintain.
+
+Moreover, it is worth mentioning that managed Kubernetes design relies on vendor-owned tools and (in most instances) infrastructure since it has the security disadvantage of limiting the degree of control and privacy that users may obtain.
+
 In order to demonstrate the advantages and disadvantages of managed kubernetes and self managed kubernetes, I will create a self managed kubernetes cluster with Kops.
 
 ### What does it mean to have "managed Kubernetes"? 
