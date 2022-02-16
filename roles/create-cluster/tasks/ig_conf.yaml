@@ -10,7 +10,7 @@
     regexp: '^(\s+)minSize:'
     line: '\1minSize: {{ node_autoscaler_min }}'
     backrefs: yes
-  notify: 'Push cluster config'
+  notify: 'Push instance groups config'
 
 - name:	Configure node max instances
   lineinfile:
@@ -18,7 +18,7 @@
     regexp: '^(\s+)maxSize:'
     line: '\1maxSize: {{ node_autoscaler_max }}'
     backrefs: yes
-  notify: 'Push cluster config'
+  notify: 'Push instance groups config'
 
 - name: Run handlers
   meta: flush_handlers
