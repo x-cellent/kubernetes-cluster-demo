@@ -1,7 +1,6 @@
 ---
-metrics_server_version: 0.6.0
 cluster_name: kops-xc.xc-cloud.net #kub-xcellent.xc-cloud.net
-#cluster_name: kubernetes.xc-cloud.net
+
 state_store: s3://kops-cluster-xc-test
 
 ## Remote access
@@ -21,8 +20,8 @@ master_zones: eu-central-1a,eu-central-1b,eu-central-1c
 ## Network
 dns_zone: kops-xc.xc-cloud.net
 network_cidr: 172.16.0.0/16
-#kubernetes_networking: amazonvpc
-kubernetes_networking: amazon-vpc-routed-eni 
+kubernetes_networking: amazonvpc
+#kubernetes_networking: amazon-vpc-routed-eni 
 #kubernetes_networking: weave
 # Topology must be either public or private
 topology: private
@@ -32,22 +31,13 @@ bastion: true
 master_size: t2.small
 master_count: 3
 #master_volume_size: 50
-# Use master_max_price if you want to use spot instances.
-# Useful to reduce cost during testing
-#master_max_price: 0.05
-# Use master_profile if you want custom iam policies
-#master_profile: arn:aws:iam::1234567890108:instance-profile/kops-custom-master-role
 
 # Node configuration
 node_size: t2.small
 node_count: 3
-#node_volume_size: 50
-# Use node_max_price if you want to use spot instances.
-# Useful to reduce cost during testing
-#node_max_price: 0.05
+
 node_autoscaler_min: 1
-node_autoscaler_max: 6
-# Use node_profile if you want custom iam policies
-#node_profile: arn:aws:iam::1234567890108:instance-profile/kops-custom-node-role
+node_autoscaler_max: 3
+
 
 
