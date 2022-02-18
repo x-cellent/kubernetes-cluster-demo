@@ -130,7 +130,13 @@ ansible-playbook create-s3.yaml
 
 - You can add and/or delete ddons such as autoscaling, metrics server, etc, by adding them into [config_addons.yml](https://github.com/x-cellent/kubernetes-cluster-demo/blob/main/config_addons.yml)
 ```
+certManager:
+  enabled: true
 metricsServer:
+  enabled: true
+  insecure: false
+
+awsLoadBalancerController:
   enabled: true
   
 additionalPolicies:
@@ -226,9 +232,16 @@ kubectl apply -f nginxlb.yaml
 ```
 ### Testing
 
-We have successfully deployed the sample app as per the image below:
+We have successfully deployed the sample app as per the image below, which is using a classic LB.
 
 ![Cluster details summary](images/cluster_nginx_lb.png)
+
+Secondly, we will deploy a cloud based ingress solution, which uses AWS LB controller to create a Network Load Balancer:
+```
+kubectl apply -f awsControllerService_demo.yml
+```
+
+Note: Classic Load Balancers are about to be deprecated soon and should be migrated to either Network Load Balancers or Application Load Balancers within AWS. AWS LB controller with Kops is compatible with kubernetes v1.21.9.
 
 ### Comparisson 
 - The provider-managed Kubernetes service reduces the time and effort required to administer and maintain a cluster by taking care of the master node.
