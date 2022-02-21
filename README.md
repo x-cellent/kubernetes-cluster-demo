@@ -76,6 +76,12 @@ git clone https://github.com/x-cellent/kubernetes-cluster-demo
 ```
 - Create a domain for your cluster, otherwise you can use a gossip based domain
 
+- Make sure to export your amazon credentials
+```
+export AWS_ACCESS_KEY_ID="YOUR_AMAZON_ACCESS_KEY"
+export AWS_SECRET_ACCESS_KEY="YOUR_AMAZON_SECRET_ACCESS_KEY"
+export AWS_SESSION_TOKEN="YOUR_AMAZON_SESSION_TOKEN"
+```
 - change infrastructure details for kops scripts.
 ```
 cat group_vars/all.yml
