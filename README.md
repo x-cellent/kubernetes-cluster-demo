@@ -144,7 +144,7 @@ metricsServer:
 
 awsLoadBalancerController:
   enabled: true
-  
+
 additionalPolicies:
   master: |
     [
@@ -157,7 +157,25 @@ additionalPolicies:
           "autoscaling:DescribeTags",
           "autoscaling:SetDesiredCapacity",
           "autoscaling:TerminateInstanceInAutoScalingGroup",
-          "elasticloadbalancing:ModifyLoadBalancerAttributes"
+          "elasticloadbalancing:ModifyLoadBalancerAttributes",
+          "acm:ListCertificates",
+          "acm:DescribeCertificate",
+          "autoscaling:DescribeAutoScalingGroups",
+          "autoscaling:DescribeLoadBalancerTargetGroups",
+          "autoscaling:AttachLoadBalancers",
+          "autoscaling:DetachLoadBalancers",
+          "autoscaling:DetachLoadBalancerTargetGroups",
+          "autoscaling:AttachLoadBalancerTargetGroups",
+          "cloudformation:*",
+          "elasticloadbalancing:*",
+          "elasticloadbalancingv2:*",
+          "ec2:DescribeInstances",
+          "ec2:DescribeSubnets",
+          "ec2:DescribeSecurityGroups",
+          "ec2:DescribeRouteTables",
+          "ec2:DescribeVpcs",
+          "iam:GetServerCertificate",
+          "iam:ListServerCertificates"
         ],
         "Resource": ["*"]
       }
@@ -173,7 +191,25 @@ additionalPolicies:
           "autoscaling:DescribeTags",
           "autoscaling:SetDesiredCapacity",
           "autoscaling:TerminateInstanceInAutoScalingGroup",
-          "elasticloadbalancing:ModifyLoadBalancerAttributes"
+          "elasticloadbalancing:ModifyLoadBalancerAttributes",
+          "acm:ListCertificates",
+          "acm:DescribeCertificate",
+          "autoscaling:DescribeAutoScalingGroups",
+          "autoscaling:DescribeLoadBalancerTargetGroups",
+          "autoscaling:AttachLoadBalancers",
+          "autoscaling:DetachLoadBalancers",
+          "autoscaling:DetachLoadBalancerTargetGroups",
+          "autoscaling:AttachLoadBalancerTargetGroups", 
+          "cloudformation:*",
+          "elasticloadbalancing:*",
+          "elasticloadbalancingv2:*",
+          "ec2:DescribeInstances",
+          "ec2:DescribeSubnets",
+          "ec2:DescribeSecurityGroups",
+          "ec2:DescribeRouteTables",
+          "ec2:DescribeVpcs",
+          "iam:GetServerCertificate",
+          "iam:ListServerCertificates"
         ],
         "Resource": ["*"]
       }
@@ -181,15 +217,15 @@ additionalPolicies:
 clusterAutoscaler:
   awsUseStaticInstanceList: false
   balanceSimilarNodeGroups: false
-  cpuRequest: 100m
+  cpuRequest: 50m
   enabled: true
   expander: least-waste
-  memoryRequest: 300Mi
+  memoryRequest: 50Mi
   newPodScaleUpDelay: 0s
   scaleDownDelayAfterAdd: 10m0s
   scaleDownUtilizationThreshold: "0.5"
-  skipNodesWithLocalStorage: true
-  skipNodesWithSystemPods: true
+  skipNodesWithLocalStorage: false
+  skipNodesWithSystemPods: false
 
 kubelet:
   anonymousAuth: false
