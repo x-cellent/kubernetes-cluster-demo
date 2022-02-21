@@ -43,6 +43,21 @@ among the tools used to spawn and manage a kubernetes clusters, hereby I have li
 - Kubernetes Dashboard – a web-based user interface that allows users to control and troubleshoot the apps in the cluster, as well as monitor the whole cluster.
 - Prometheus – a monitoring & analyzing system which is extremely useful and informative while being simple to integrate and use.
 
+- In a nutshell:
+  - Self managed solutions:
+    • You Provision VMs
+    • You Configure VMs
+    • You Use Scripts to Deploy Cluster
+    • You Maintain VMs yourself
+    • Eg: Kubernetes on AWS using KOPS or Kubespray
+
+  - Managed Solutions
+    • Kubernetes-As-A-Service
+    • Provider provisions VMs
+    • Provider installs Kubernetes
+    • Provider maintains VMs
+    • Eg: Google Container Engine (GKE), EKS
+
 ### kops stands for Kubernetes Operations.
 "We like to think of it as kubectl for clusters," says the kops GitHub website. kops is a command line interface (CLI) tool that has implemented the major verbs of cluster management. 
 
