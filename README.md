@@ -246,7 +246,7 @@ Note: Classic Load Balancers are about to be deprecated soon and should be migra
 ### Comparisson 
 - The provider-managed Kubernetes service reduces the time and effort required to administer and maintain a cluster by taking care of the master node.
 
-- You have more control over your cluster using self-managed Kubernetes (flexibility). You can use various cloud computing services and even you can use your own on-site infrastructure.
+- One has more control over the cluster using self-managed Kubernetes (flexibility). Also, one can use various cloud computing services as well as on-site infrastructure.
 
 In a nutshell: 
   - Self managed solutions:
