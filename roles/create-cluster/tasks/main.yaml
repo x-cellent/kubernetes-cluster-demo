@@ -38,10 +38,10 @@
   shell: kops export kubecfg --admin --state {{ state_store }}
 
 - name: check cluster
-  shell: "kops rolling-update cluster {{ cluster_name }} --yes --state {{ state_store }} --cloudonly --force"
+  shell: "kops rolling-update cluster {{ cluster_name }} --yes --state {{ state_store }} --cloudonly"
   
-#- name: check cluster availability
-#  shell: kops validate cluster --wait 10m --state {{ state_store }}
+- name: check cluster availability
+  shell: kops validate cluster --wait 15m --state {{ state_store }}
 
 #- name: Verify that all Kubernetes nodes are ready
 #  shell: kops export kubecfg --admin --state {{ state_store }} && kubectl get nodes | grep "Ready" | wc -l
