@@ -67,12 +67,12 @@ Among the traits that make kops appealing are:
 - AWS account
 - docker
 - A dns domain
+- Python Libraries: boto3, jinja2
 
 ### Deployment 
 - Clone this repo in your local environment:
 ```
 git clone https://github.com/x-cellent/kubernetes-cluster-demo
-
 ```
 - Create a domain for your cluster, otherwise you can use a gossip based domain
 
@@ -84,7 +84,7 @@ export AWS_SESSION_TOKEN="YOUR_AMAZON_SESSION_TOKEN"
 ```
 - change infrastructure details for kops scripts.
 ```
-cat group_vars/all.yml
+cat group_vars/all/vars.yaml
 cluster_name: kops-xc.xc-cloud.net #kub-xcellent.xc-cloud.net
 #cluster_name: kubernetes.xc-cloud.net
 state_store: s3://kops-cluster-xc-test
@@ -259,7 +259,7 @@ Cloud providers handle all of the organization's operational ingress workflows, 
 For example, by default, AWS Ingress Controller builds an Application Load Balancer, which works smoothly with the AWS cloud to provide load balancing to pods without requiring access to nodes or proxy configurations.
 
 However, when these technologies are implemented in a hybrid cloud. These become more difficult to manage because each provider will have a distinct solution.
-In comparisson to cloud based ingress solutions, in-cluster ingress solutions take less time to construct and update clusters with tight health checks and cross namespace, which can be a problem with AWS and GCE ingress controllers because each namespace requires a new instance of Ingress. Compatibility with self managed clusters is not always the case.
+In comparison to cloud based ingress solutions, in-cluster ingress solutions take less time to construct and update clusters with tight health checks and cross namespace, which can be a problem with AWS and GCE ingress controllers because each namespace requires a new instance of Ingress. Compatibility with self managed clusters is not always the case.
 
 For this example, we will start with ingress-nginx, as it is a reliable solution for getting started with routing. NGINX Inc. also offers a variety of controllers with varying levels of capability, depending on the size of the company.
 
@@ -267,7 +267,7 @@ For this example, we will start with ingress-nginx, as it is a reliable solution
 ```
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.1.1/deploy/static/provider/cloud/deploy.yaml
 ```
-Aftwerwards, we have to find our LoadBalancer url to point our ingress controller to, for which we will deploy a sample application: 
+Afterwards, we have to find our LoadBalancer url to point our ingress controller to, for which we will deploy a sample application: 
 ```
 export LB_URL=$(kubectl get services -n ingress-nginx -o jsonpath="{.items[0].status.loadBalancer.ingress[*].hostname}")
 envsubst < nginxlb.yaml | kubectl apply -f -
@@ -289,7 +289,7 @@ kubectl get services webservice -o jsonpath="{.status.loadBalancer.ingress[*].ho
 ```
 Note: Classic Load Balancers are about to be deprecated soon and should be migrated to either Network Load Balancers or Application Load Balancers within AWS. AWS LB controller with Kops is compatible with kubernetes v1.21.9.
 
-### Comparisson 
+### Comparison 
 - The provider-managed Kubernetes service reduces the time and effort required to administer and maintain a cluster by taking care of the master node.
 
 - One has more control over the cluster using self-managed Kubernetes (flexibility). Also, one can use various cloud computing services as well as on-site infrastructure.
