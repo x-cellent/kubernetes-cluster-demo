@@ -283,7 +283,10 @@ Secondly, we will deploy a cloud based ingress solution, which uses AWS LB contr
 ```
 kubectl apply -f awsControllerService_demo.yml
 ```
-
+To obtain the NLB url, we can run the following:
+```
+kubectl get services webservice -o jsonpath="{.status.loadBalancer.ingress[*].hostname}"
+```
 Note: Classic Load Balancers are about to be deprecated soon and should be migrated to either Network Load Balancers or Application Load Balancers within AWS. AWS LB controller with Kops is compatible with kubernetes v1.21.9.
 
 ### Comparisson 
