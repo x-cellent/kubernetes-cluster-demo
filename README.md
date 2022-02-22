@@ -134,7 +134,7 @@ node_count: 3
 ansible-playbook create-s3.yaml
 ```
 
-- You can add and/or delete ddons such as autoscaling, metrics server, etc, by adding them into [config_addons.yml](https://github.com/x-cellent/kubernetes-cluster-demo/blob/main/config_addons.yml)
+- You can add and/or delete add-ons such as autoscaling, metrics server, etc, by adding them into [config_addons.yml](https://github.com/x-cellent/kubernetes-cluster-demo/blob/main/config_addons.yml)
 ```
 certManager:
   enabled: true
