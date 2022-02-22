@@ -263,7 +263,7 @@ In comparisson to cloud based ingress solutions, in-cluster ingress solutions ta
 
 For this example, we will start with ingress-nginx, as it is a reliable solution for getting started with routing. NGINX Inc. also offers a variety of controllers with varying levels of capability, depending on the size of the company.
 
-- Next, the installation of an lb  will demonstrate how to deploy a load balancer to our cluster, for which we can have multiple choices. In this example we will configure an ingress nginx load balancer as well as the open source GLBC Load Balancer.
+- Next, the installation of an lb  will demonstrate how to deploy a load balancer to our cluster, for which we can have multiple choices. In this example we will configure an ingress nginx load balancer.
 ```
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.1.1/deploy/static/provider/cloud/deploy.yaml
 ```
