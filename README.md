@@ -4,7 +4,7 @@
 
 ### Overview 🔧
 
-Kubernetes clusters can be controlled by the user (self-managed) or by a cloud service provider (Provider managed Kubernetes). Unless you have a compelling technical or legal reason to use an on-premises self-managed cluster, consider a managed Kubernetes service. Self-managed clusters necessitate a high level of specialized expertise among your staff, as well as continuous infrastructure and maintenance costs.
+Kubernetes clusters can be controlled by the user (self-managed) or by a cloud service provider (Provider managed Kubernetes). If you do not have a compelling technical or legal reason to use an on-premises self-managed cluster, consider a managed Kubernetes service. Self-managed clusters necessitate a high level of specialized expertise among your staff, as well as continuous infrastructure and maintenance costs.
 
 The first issue most teams ask themselves when planning a Kubernetes installation is whether to employ a managed Kubernetes service – such as Amazon AKS, Azure Kubernetes Service, or another public cloud-based Kubernetes platform – or to deploy and operate Kubernetes on their own infrastructure. Kubernetes provider handles at least some of the provisioning and maintenance duties required to keep clusters running. Therefore, a managed Kubernetes service is nearly always easier to set up and maintain.
 
@@ -76,6 +76,12 @@ git clone https://github.com/x-cellent/kubernetes-cluster-demo
 ```
 - Create a domain for your cluster, otherwise you can use a gossip based domain
 
+- Make sure to export your amazon credentials
+```
+export AWS_ACCESS_KEY_ID="YOUR_AMAZON_ACCESS_KEY"
+export AWS_SECRET_ACCESS_KEY="YOUR_AMAZON_SECRET_ACCESS_KEY"
+export AWS_SESSION_TOKEN="YOUR_AMAZON_SESSION_TOKEN"
+```
 - change infrastructure details for kops scripts.
 ```
 cat group_vars/all.yml
@@ -138,7 +144,7 @@ metricsServer:
 
 awsLoadBalancerController:
   enabled: true
-  
+
 additionalPolicies:
   master: |
     [
@@ -151,7 +157,25 @@ additionalPolicies:
           "autoscaling:DescribeTags",
           "autoscaling:SetDesiredCapacity",
           "autoscaling:TerminateInstanceInAutoScalingGroup",
-          "elasticloadbalancing:ModifyLoadBalancerAttributes"
+          "elasticloadbalancing:ModifyLoadBalancerAttributes",
+          "acm:ListCertificates",
+          "acm:DescribeCertificate",
+          "autoscaling:DescribeAutoScalingGroups",
+          "autoscaling:DescribeLoadBalancerTargetGroups",
+          "autoscaling:AttachLoadBalancers",
+          "autoscaling:DetachLoadBalancers",
+          "autoscaling:DetachLoadBalancerTargetGroups",
+          "autoscaling:AttachLoadBalancerTargetGroups",
+          "cloudformation:*",
+          "elasticloadbalancing:*",
+          "elasticloadbalancingv2:*",
+          "ec2:DescribeInstances",
+          "ec2:DescribeSubnets",
+          "ec2:DescribeSecurityGroups",
+          "ec2:DescribeRouteTables",
+          "ec2:DescribeVpcs",
+          "iam:GetServerCertificate",
+          "iam:ListServerCertificates"
         ],
         "Resource": ["*"]
       }
@@ -167,7 +191,25 @@ additionalPolicies:
           "autoscaling:DescribeTags",
           "autoscaling:SetDesiredCapacity",
           "autoscaling:TerminateInstanceInAutoScalingGroup",
-          "elasticloadbalancing:ModifyLoadBalancerAttributes"
+          "elasticloadbalancing:ModifyLoadBalancerAttributes",
+          "acm:ListCertificates",
+          "acm:DescribeCertificate",
+          "autoscaling:DescribeAutoScalingGroups",
+          "autoscaling:DescribeLoadBalancerTargetGroups",
+          "autoscaling:AttachLoadBalancers",
+          "autoscaling:DetachLoadBalancers",
+          "autoscaling:DetachLoadBalancerTargetGroups",
+          "autoscaling:AttachLoadBalancerTargetGroups", 
+          "cloudformation:*",
+          "elasticloadbalancing:*",
+          "elasticloadbalancingv2:*",
+          "ec2:DescribeInstances",
+          "ec2:DescribeSubnets",
+          "ec2:DescribeSecurityGroups",
+          "ec2:DescribeRouteTables",
+          "ec2:DescribeVpcs",
+          "iam:GetServerCertificate",
+          "iam:ListServerCertificates"
         ],
         "Resource": ["*"]
       }
@@ -175,15 +217,15 @@ additionalPolicies:
 clusterAutoscaler:
   awsUseStaticInstanceList: false
   balanceSimilarNodeGroups: false
-  cpuRequest: 100m
+  cpuRequest: 50m
   enabled: true
   expander: least-waste
-  memoryRequest: 300Mi
+  memoryRequest: 50Mi
   newPodScaleUpDelay: 0s
   scaleDownDelayAfterAdd: 10m0s
   scaleDownUtilizationThreshold: "0.5"
-  skipNodesWithLocalStorage: true
-  skipNodesWithSystemPods: true
+  skipNodesWithLocalStorage: false
+  skipNodesWithSystemPods: false
 
 kubelet:
   anonymousAuth: false
@@ -246,7 +288,22 @@ Note: Classic Load Balancers are about to be deprecated soon and should be migra
 ### Comparisson 
 - The provider-managed Kubernetes service reduces the time and effort required to administer and maintain a cluster by taking care of the master node.
 
-- You have more control over your cluster using self-managed Kubernetes (flexibility). You can use various cloud computing services and even you can use your own on-site infrastructure.
+- One has more control over the cluster using self-managed Kubernetes (flexibility). Also, one can use various cloud computing services as well as on-site infrastructure.
+
+In a nutshell: 
+  - Self managed solutions:
+    - You Provision VMs
+    - You Configure VMs
+    - You use Scripts to build & deploy Cluster
+    - You are in charge of maintaining VMs
+    - Eg: KOPS or Kubespray on AWS 
+
+  - Managed Solutions
+    - Kubernetes-As-A-Service
+    - Provider provisions VMs
+    - Provider installs Kubernetes
+    - Provider manages VMs
+    - Eg: Google Container Engine (GKE), EKS
 
 ### Deleting cluster and resources generated by KOPS
 
