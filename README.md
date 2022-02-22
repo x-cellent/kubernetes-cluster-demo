@@ -269,7 +269,8 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/cont
 ```
 Aftwerwards, we have to find our LoadBalancer url to point our ingress controller to, for which we will deploy a sample application: 
 ```
-export LB_URL="YOUR_LB_URL"
+export LB_URL=$(kubectl get services -n ingress-nginx -o jsonpath="{.items[0].status.loadBalancer.ingress[*].hostname}")
+envsubst < nginxlb.yaml | kubectl apply -f -
 kubectl apply -f nginxlb.yaml
 ```
 ### Testing
