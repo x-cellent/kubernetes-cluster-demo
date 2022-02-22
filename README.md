@@ -65,7 +65,6 @@ Among the traits that make kops appealing are:
 - Kops
 - Ansible
 - AWS account
-- docker
 - A dns domain
 - Python Libraries: boto3, jinja2
 
