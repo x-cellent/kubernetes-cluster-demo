@@ -8,7 +8,7 @@
   blockinfile:
     path: "/tmp/{{ cluster_name }}-cluster-conf.yaml"
     insertafter: "spec:"
-    block: "{{ lookup('file', '{{ playbook_dir }}/config_addons.yml') | indent(width=2, indentfirst=True) }}"
+    block: "{{ lookup('file', '{{ playbook_dir }}/config_addons.yml') | indent(width=2, first=True) }}"
   notify: 'Push cluster config'
 
 - name: Configure Classic LB to be NLB for masters
