@@ -338,7 +338,7 @@ In a nutshell:
     - You are in charge of maintaining VMs
     - Eg: KOPS or Kubespray on AWS 
 
-  - Managed Solutions
+  - Managed Solutions:
     - Kubernetes-As-A-Service
     - Provider provisions VMs
     - Provider installs Kubernetes
