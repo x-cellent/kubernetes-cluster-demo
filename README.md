@@ -62,8 +62,8 @@ Among the traits that make kops appealing are:
 ![cluster diagram](images/lb_ingress.png) [[1]](https://aws.amazon.com/blogs/opensource/network-load-balancer-nginx-ingress-controller-eks/)
 
 ### Prerequisites 📋
-- Kops (1.22.3+)
-- Ansible (2.10.15+)
+- Kops (v1.22.3+)
+- Ansible (v2.10.15+)
 - AWS account
 - A dns domain
 - Python Libraries: boto3, jinja2
