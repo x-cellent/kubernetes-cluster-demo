@@ -43,6 +43,14 @@ among the tools used to spawn and manage a kubernetes clusters, hereby I have li
 - Kubernetes Dashboard – a web-based user interface that allows users to control and troubleshoot the apps in the cluster, as well as monitor the whole cluster.
 - Prometheus – a monitoring & analyzing system which is extremely useful and informative while being simple to integrate and use.
 
+#### Alternatives to Kubernetes clusters on bare-metal with metal-stack
+
+As with every regulated industry, there are digital sovereignty concerns regarding the control and access of data and compute. Hence, going to the public cloud isn’t feasible for every workload. So, we got the task to find an enterprise ready stack for our own datacenter, while also introducing the cloud native digital competency standards.
+
+Regarding the management, access and control of data and computing resources in any regulated enterprise, there are security concerns and rules one has to take into account for data protection and ownership. Thus, using the public cloud isn't appropriate for all workloads. As a result, identifying an enterprise-ready stack for our own datacenter, as well as creating cloud native digital competency criteria is a key task we ought to tackle for regulated enterprises.
+
+Besides, Metal-stack is a piece of open source software that provides an API for provisioning and managing physical servers in a data center. We refer to this product as Metal-as-a-Service (MaaS) or bare metal cloud. It is also known as an IaaS provider for bare metal focused on creating on-premise Kubernetes clusters. Gardener assistance is built in.
+
 ### kops stands for Kubernetes Operations.
 "We like to think of it as kubectl for clusters," says the kops GitHub website. kops is a command line interface (CLI) tool that has implemented the major verbs of cluster management. 
 
@@ -56,6 +64,8 @@ Among the traits that make kops appealing are:
 - For dry-runs, a state-sync model was used, as well as automated idempotency.
 - Terraform configuration generation capability
 - Custom kubectl add-ons are supported.
+
+
 
 ### Infrastructure details
 
