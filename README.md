@@ -105,8 +105,8 @@ master_zones: eu-central-1a,eu-central-1b,eu-central-1c
 ## Network
 dns_zone: kops-xc.xc-cloud.net
 network_cidr: 172.16.0.0/16
-#kubernetes_networking: amazonvpc
-kubernetes_networking: amazon-vpc-routed-eni 
+kubernetes_networking: amazonvpc
+#kubernetes_networking: amazon-vpc-routed-eni 
 #kubernetes_networking: weave
 # Topology must be either public or private
 topology: private
