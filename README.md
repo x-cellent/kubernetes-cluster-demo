@@ -8,9 +8,9 @@ Kubernetes clusters can be controlled by the user (self-managed) or by a cloud s
 
 Moreover, it is worth mentioning that managed Kubernetes design relies on vendor-owned tools and (in most instances) infrastructure since it has the security disadvantage of limiting the degree of control and privacy that users may obtain. Moreover, if you do not have a compelling technical or legal reason to use an on-premises self-managed cluster, consider a managed Kubernetes service. Self-managed clusters necessitate a high level of specialized expertise among your staff, as well as continuous infrastructure and maintenance costs.
 
-In order to demonstrate the advantages and disadvantages of managed kubernetes and self managed kubernetes, I will create a self managed kubernetes cluster with Kops. In addition, some alternatives to launching kubernetes clusters on bare metal servers will be briefly introduced to simplify provisioning, upgrading, and operating multiple Kubernetes clusters such as:
-- [Cluster IP](https://metal-stack.io/blog/2021/03/cluster-api-provider/) on metal stack
-- [Gardener](https://gardener.cloud/) with metal stack
+In order to demonstrate the advantages and disadvantages of managed kubernetes and self managed kubernetes, I will create a self managed kubernetes cluster with Kops. In addition, some alternatives to launching kubernetes clusters on bare metal servers will be briefly introduced to simplify provisioning, upgrading, and operating multiple Kubernetes clusters on metal stack such as:
+- [Cluster IP](https://metal-stack.io/blog/2021/03/cluster-api-provider/).
+- [Gardener](https://gardener.cloud/).
 
 ### What does it mean to have "managed Kubernetes"? 
 
