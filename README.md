@@ -45,6 +45,8 @@ among the tools used to spawn and manage a kubernetes clusters, hereby I have li
 
 #### Kubernetes clusters on bare-metal servers with metal-stack
 
+##### Metal-Stack
+
 Regarding the management and access of data and computing resources in any regulated enterprise, there are security concerns and rules one has to take into account for data protection and ownership. Thus, using the public cloud isn't appropriate for all workloads. As a result, identifying an enterprise-ready stack for our own datacenter, as well as creating cloud native digital competency criteria are key tasks we ought to tackle for regulated enterprises.
 
 Besides, Metal-stack is a piece of open source software that provides an API for provisioning and managing physical servers in a data center. We refer to this product as Metal-as-a-Service (MaaS) or bare metal cloud. It is also known as an IaaS provider for bare metal focused on creating on-premise Kubernetes clusters. Support for Gardener is built in.
@@ -53,6 +55,8 @@ Key advantages of using kubernetes on bare-metal servers:
 - Performance & predictability
 - Hardware compatibility and flexibility
 - Security and management
+
+##### Kubernetes Clusters as a Service
 
 There are numerous Open Source tools available to assist in the creation and maintenance of single Kubernetes clusters. However, the more clusters you require, the more difficult it is to operate, monitor, manage, and keep them all alive and up to date. That is precisely the focus of projects such as [Gardener](https://gardener.cloud/) and [Cluster API](https://metal-stack.io/blog/2021/03/cluster-api-provider/), which are designed to manage Kubernetes clusters as a service, rather than just another provisioning tool. It offers Kubernetes-compliant clusters on a variety of cloud providers, as well as the flexibility to expand hundreds or thousands of them.
 
