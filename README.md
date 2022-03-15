@@ -31,7 +31,7 @@ You have control over the management layer on a self-managed Kubernetes Cluster,
 
 This also gives configuration flexibility, allowing you to setup the cluster and nodes however you wish, rather than having to deal with the configuration options allowed by a managed service.
 
-### Kubernetes tools to Create and Control Clusters 📖
+#### Kubernetes tools to Create and Control Clusters 📖
 among the tools used to spawn and manage a kubernetes clusters, hereby I have listed some of them:
 - Kubeadm – a toolkit providing the best-practice ways to create Kubernetes clusters. It is aimed at ensuring a quick and easy set up of the minimum viable cluster.
 - Kubespray – a composition of Ansible tools for performing configuration and deployment-related tasks. It is compatible with any cloud service provider and is backed by Kubeadm.
