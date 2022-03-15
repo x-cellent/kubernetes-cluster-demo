@@ -56,7 +56,7 @@ Key advantages of using kubernetes on bare-metal servers:
 - Hardware compatibility and flexibility
 - Security and management
 
-##### Kubernetes Clusters as a Service
+##### Kubernetes clusters as a service
 
 There are numerous Open Source tools available to assist in the creation and maintenance of single Kubernetes clusters. However, the more clusters you require, the more difficult it is to operate, monitor, manage, and keep them all alive and up to date. That is precisely the focus of projects such as [Gardener](https://gardener.cloud/) and [Cluster API](https://metal-stack.io/blog/2021/03/cluster-api-provider/), which are designed to manage Kubernetes clusters as a service, rather than just another provisioning tool. It offers Kubernetes-compliant clusters on a variety of cloud providers, as well as the flexibility to expand hundreds or thousands of them.
 
