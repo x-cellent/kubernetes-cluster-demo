@@ -74,6 +74,8 @@ For more information on Cluster API, go to [Cluster API](https://metal-stack.io/
 
 It's built to scale to tens of thousands of clusters at a number of IaaS providers, regardless of whether they're in the cloud or on premise, virtualized or bare metal. It not only manages the construction and deletion of Kubernetes clusters, but it also handles the automatic updating or upgrading of Kubernetes and the operating system of the worker nodes. Gardener is built in such a way that it specifies clusters, workers, and all other components as Kubernetes resources (such as pods and deployments) and brings them back to the desired state.
 
+[Kubernetes Cloud Controller Manager](https://github.com/metal-stack/metal-ccm) and [Gardener extension provider](https://github.com/metal-stack/gardener-extension-provider-metal) can be used to make Kubernetes work well with metal-stack. Failed machines will be immediately replaced with this in place, and you may even use the Kubernetes cluster autoscaler for automatic bare-metal server provisioning.
+
 For learning more about Gardener, go to [Gardener](https://gardener.cloud/).
 
 ### kops stands for Kubernetes Operations.
