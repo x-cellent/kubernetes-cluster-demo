@@ -64,7 +64,7 @@ Some alternatives for managing kubernetes cluster on metal-stack:
 
 - Cluster API
 
-The Kubernetes Special Interest Group (SIG) Cluster Lifecycle started Cluster API with the purpose of making deploying, updating, and operating numerous Kubernetes clusters easier. It uses Kubernetes-style APIs to automate cluster lifecycle management in this way. Clusters and nodes can be managed similarly like Pods and Deployments.
+The Kubernetes Special Interest Group (SIG) Cluster Lifecycle started Cluster API with the purpose of making deploying, updating, and operating numerous Kubernetes clusters easier. It uses Kubernetes-style APIs to automate cluster lifecycle management in this way. Clusters and nodes can be managed similarly as with Pods and Deployments.
 
 Besides, there is a Cluster resource for managing clusters, a Machine resource (similar to the Pod resource for apps) and a MachineDeployment resource for managing machines (comparable to the Deployment resource for apps).
 
