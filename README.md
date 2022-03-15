@@ -56,9 +56,23 @@ Key advantages of using kubernetes on bare-metal servers:
 - Hardware compatibility and flexibility
 - Security and management
 
-##### Kubernetes clusters as a service
+##### Kubernetes Clusters-as-a-Service
 
-There are numerous Open Source tools available to assist in the creation and maintenance of single Kubernetes clusters. However, the more clusters you require, the more difficult it is to operate, monitor, manage, and keep them all alive and up to date. That is precisely the focus of projects such as [Gardener](https://gardener.cloud/) and [Cluster API](https://metal-stack.io/blog/2021/03/cluster-api-provider/), which are designed to manage Kubernetes clusters as a service, rather than just another provisioning tool. It offers Kubernetes-compliant clusters on a variety of cloud providers, as well as the flexibility to expand hundreds or thousands of them.
+There are numerous Open Source tools available to assist in the creation and maintenance of single Kubernetes clusters. However, the more clusters you require, the more difficult it is to operate, monitor, manage, and keep them all alive and up to date. That is precisely the focus of projects such as [Gardener](https://gardener.cloud/) and [Cluster API](https://metal-stack.io/blog/2021/03/cluster-api-provider/), which are designed to manage Kubernetes clusters as a service, rather than just another provisioning tool. It offers Kubernetes-compliant clusters on a variety of cloud providers and bare-metal infrastructure, as well as the flexibility to expand hundreds or thousands of them.
+
+Some alternatives for managing kubernetes cluster on metal-stack:
+
+- Cluster API
+
+The Kubernetes Special Interest Group (SIG) Cluster Lifecycle started Cluster API with the purpose of making deploying, updating, and operating numerous Kubernetes clusters easier. It uses Kubernetes-style APIs to automate cluster lifecycle management in this way. Clusters and nodes can be managed in the same way as Pods and Deployments can be managed:
+
+Besides, there is a Cluster resource for managing clusters, a Machine resource (similar to the Pod resource for apps) and a MachineDeployment resource for managing machines (comparable to the Deployment resource for apps).
+
+- Gardener
+
+It's built to scale to tens of thousands of clusters at a number of IaaS providers, regardless of whether they're in the cloud or on premise, virtualized or bare metal. It not only manages the construction and deletion of Kubernetes clusters, but it also handles the automatic updating or upgrading of Kubernetes and the operating system of the worker nodes. Gardener is built to be cloud-native, therefore it specifies clusters, workers, and all other components as Kubernetes resources (such as pods and deployments) and reconciles them to the desired state.
+
+
 
 ### kops stands for Kubernetes Operations.
 "We like to think of it as kubectl for clusters," says the kops GitHub website. kops is a command line interface (CLI) tool that has implemented the major verbs of cluster management. 
