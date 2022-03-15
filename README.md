@@ -8,8 +8,8 @@ Kubernetes clusters can be controlled by the user (self-managed) or by a cloud s
 
 Moreover, it is worth mentioning that managed Kubernetes design relies on vendor-owned tools and (in most instances) infrastructure since it has the security disadvantage of limiting the degree of control and privacy that users may obtain. Moreover, if you do not have a compelling technical or legal reason to use an on-premises self-managed cluster, consider a managed Kubernetes service. Self-managed clusters necessitate a high level of specialized expertise among your staff, as well as continuous infrastructure and maintenance costs.
 
-In order to demonstrate the advantages and disadvantages of managed kubernetes and self managed kubernetes, I will create a self managed kubernetes cluster with Kops. In addition, some alternatives to launching kubernetes clusters on bare metal servers will be briefly introduced for Kubernetes clusters on metal stack such as:
-- [Cluster IP](https://metal-stack.io/blog/2021/03/cluster-api-provider/).
+In order to demonstrate the advantages and disadvantages of managed kubernetes and self managed kubernetes, we will create a self managed kubernetes cluster with Kops. In addition, some alternatives to launching kubernetes clusters on bare-metal servers will be briefly introduced for Kubernetes clusters with metal-stack such as:
+- [Cluster API](https://metal-stack.io/blog/2021/03/cluster-api-provider/).
 - [Gardener](https://gardener.cloud/).
 
 ### What does it mean to have "managed Kubernetes"? 
@@ -31,7 +31,7 @@ You have control over the management layer on a self-managed Kubernetes Cluster,
 
 This also gives configuration flexibility, allowing you to setup the cluster and nodes however you wish, rather than having to deal with the configuration options allowed by a managed service.
 
-### Kubernetes tools to Create and Control Clusters 📖
+#### Kubernetes tools to Create and Control Clusters 📖
 among the tools used to spawn and manage a kubernetes clusters, hereby I have listed some of them:
 - Kubeadm – a toolkit providing the best-practice ways to create Kubernetes clusters. It is aimed at ensuring a quick and easy set up of the minimum viable cluster.
 - Kubespray – a composition of Ansible tools for performing configuration and deployment-related tasks. It is compatible with any cloud service provider and is backed by Kubeadm.
@@ -42,6 +42,17 @@ among the tools used to spawn and manage a kubernetes clusters, hereby I have li
 - Kops – a tool for creating/deleting, controlling, and upgrading production-based clusters from the command line. It is used to manage the Kubernetes cluster’s entire life cycle.
 - Kubernetes Dashboard – a web-based user interface that allows users to control and troubleshoot the apps in the cluster, as well as monitor the whole cluster.
 - Prometheus – a monitoring & analyzing system which is extremely useful and informative while being simple to integrate and use.
+
+#### Kubernetes clusters on bare-metal servers with metal-stack
+
+Regarding the management, access and control of data and computing resources in any regulated enterprise, there are security concerns and rules one has to take into account for data protection and ownership. Thus, using the public cloud isn't appropriate for all workloads. As a result, identifying an enterprise-ready stack for our own datacenter, as well as creating cloud native digital competency criteria is a key task we ought to tackle for regulated enterprises.
+
+Besides, Metal-stack is a piece of open source software that provides an API for provisioning and managing physical servers in a data center. We refer to this product as Metal-as-a-Service (MaaS) or bare metal cloud. It is also known as an IaaS provider for bare metal focused on creating on-premise Kubernetes clusters. Gardener assistance is built in.
+
+Key advantages of using kubernetes on bare-metal servers:
+- Performance & predictability
+- Hardware compatibility and flexibility
+- Security and control 
 
 ### kops stands for Kubernetes Operations.
 "We like to think of it as kubectl for clusters," says the kops GitHub website. kops is a command line interface (CLI) tool that has implemented the major verbs of cluster management. 
@@ -56,6 +67,8 @@ Among the traits that make kops appealing are:
 - For dry-runs, a state-sync model was used, as well as automated idempotency.
 - Terraform configuration generation capability
 - Custom kubectl add-ons are supported.
+
+
 
 ### Infrastructure details
 
@@ -330,8 +343,9 @@ In the end, either approach — managed or unmanaged Kubernetes — will yield a
 - https://www.eficode.com/blog/start-well-with-kubernetes
 - https://kubevious.io/blog/post/comparing-kubernetes-ingress-solutions-which-one-is-right-for-you
 - https://sysdig.com/learn-cloud-native/kubernetes-security/secure-kubernetes-architecture/
-
-
+- https://ubuntu.com/blog/understanding-bare-metal-kubernetes
+- https://metal-stack.io/blog/2019/04/why-metal-stack/
+- https://metal-stack.io/blog/2021/03/cluster-api-provider/
 
 
  
