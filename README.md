@@ -10,7 +10,7 @@ Moreover, it is worth mentioning that managed Kubernetes design relies on vendor
 
 In order to demonstrate the advantages and disadvantages of managed kubernetes and self managed kubernetes, we will create a self managed kubernetes cluster with Kops. 
 
-In addition, some alternatives to launching kubernetes clusters on bare-metal servers will be briefly introduced for Kubernetes clusters with metal-stack such as:
+In addition, some alternatives to launching kubernetes clusters on bare-metal servers will be briefly introduced for metal-stack such as:
 - [Cluster API](https://metal-stack.io/blog/2021/03/cluster-api-provider/).
 - [Gardener](https://gardener.cloud/).
 
