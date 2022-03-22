@@ -125,7 +125,7 @@ sudo ansible-playbook kops-installation.yml
 ```
 Furthermore, you can also install it manually instead by means of the following [guide](https://kops.sigs.k8s.io/install/).
 
-- Create a domain for your cluster, otherwise you can use a gossip based domains:
+- Create a domain for your cluster, otherwise you can use a gossip based domain:
 
 kops employs DNS for discovery both inside and outside the cluster, so clients can reach the kubernetes API server. Therefore, we need to create the appropriate DNS records before we can build a Kubernetes cluster with kops.
 
