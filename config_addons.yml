@@ -86,7 +86,7 @@ clusterAutoscaler:
   expander: least-waste
   memoryRequest: 50Mi
   newPodScaleUpDelay: 0s
-  scaleDownDelayAfterAdd: 10m0s
+  scaleDownDelayAfterAdd: 4m0s
   scaleDownUtilizationThreshold: "0.5"
   skipNodesWithLocalStorage: false
   skipNodesWithSystemPods: false
