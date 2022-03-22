@@ -93,7 +93,7 @@ kops_version: 1.22.3
 ```
 and afterwards, execute the following command with sudo:
 ```
-sudo ansible-playbook install-kops.yaml
+sudo ansible-playbook kops-installation.yml
 ```
 Furthermore, you can also install it manually instead by means of the following [guide](https://kops.sigs.k8s.io/install/).
 
