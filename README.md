@@ -99,7 +99,7 @@ Using the AWS CLI, create a Route 53 hosted zone. Make sure to have downloaded j
 ```
 ID=$(uuidgen) && \
 aws route53 create-hosted-zone \
---name cluster.kubernetes-aws.io \
+--name **kops-xc.xc-cloud.net** \
 --caller-reference $ID \
 | jq .DelegationSet.NameServers
 ```
@@ -116,9 +116,9 @@ Besides a sample output is going to look like this:
 ]
 ```
 
-Afterwards, add the (NS) records with your dns provider.
+Afterwards, add the (NS) records to your dns provider you purchased the parent domain with.
 
-For more information, take a look at [aws and dns configuration](https://kops.sigs.k8s.io/getting_started/aws/) and https://aws.amazon.com/blogs/compute/kubernetes-clusters-aws-kops/.
+For more information, take a look at some useful resources such as: [aws and dns configuration](https://kops.sigs.k8s.io/getting_started/aws/) and [AWS using KOPS](https://aws.amazon.com/blogs/compute/kubernetes-clusters-aws-kops/).
 
 - Make sure to export your amazon credentials
 ```
