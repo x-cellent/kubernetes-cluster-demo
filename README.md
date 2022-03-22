@@ -166,7 +166,7 @@ export AWS_ACCESS_KEY_ID="YOUR_AMAZON_ACCESS_KEY"
 export AWS_SECRET_ACCESS_KEY="YOUR_AMAZON_SECRET_ACCESS_KEY"
 export AWS_SESSION_TOKEN="YOUR_AMAZON_SESSION_TOKEN"
 ```
-- change infrastructure details for kops scripts at [vars.yaml](group_vars/all/vars.yaml)
+- Change infrastructure details for kops scripts at [vars.yaml](group_vars/all/vars.yaml)
 ```
 cat group_vars/all/vars.yaml 
 
