@@ -149,6 +149,7 @@ state_store: s3://kops-cluster-xc-test
 ## Remote access
 ssh_public_key: ~/.ssh/id_rsa.pub
 
+kops_version: 1.22.3
 
 ## Regions / Availability zones
 aws_region: eu-central-1
