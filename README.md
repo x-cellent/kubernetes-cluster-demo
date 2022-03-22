@@ -144,7 +144,7 @@ aws route53 create-hosted-zone \
 
 which will output the ns name servers required to be registered with your dns registrar. We have utilized the **kops-xc.xc-cloud.net** subdomain in this case.
 
-Besides a sample output is going to look like this:
+Besides, a sample output is going to look like this:
 ```
 [
 "ns-xx-awsdns-11.com",
