@@ -67,9 +67,7 @@ Among the traits that make kops appealing are:
 - For dry-runs, a state-sync model was used, as well as automated idempotency.
 - Terraform configuration generation capability
 - Custom kubectl add-ons are supported.
-
-
-
+- 
 ### Infrastructure details
 
 ![cluster diagram](images/lb_ingress.png) [[1]](https://aws.amazon.com/blogs/opensource/network-load-balancer-nginx-ingress-controller-eks/)
@@ -87,6 +85,11 @@ Among the traits that make kops appealing are:
 git clone https://github.com/x-cellent/kubernetes-cluster-demo
 ```
 - Create a domain for your cluster, otherwise you can use a gossip based domain
+
+kops employs DNS for discovery both inside and outside the cluster, so clients can reach the kubernetes API server. Therefore, We need to prepare somewhere to produce the appropriate DNS records before we can build a Kubernetes cluster with kops.
+
+For more information, take a look at [aws and dns congiguration](https://kops.sigs.k8s.io/getting_started/aws/)
+ 
 
 - Make sure to export your amazon credentials
 ```
@@ -346,6 +349,7 @@ In the end, either approach — managed or unmanaged Kubernetes — will yield a
 - https://ubuntu.com/blog/understanding-bare-metal-kubernetes
 - https://metal-stack.io/blog/2019/04/why-metal-stack/
 - https://metal-stack.io/blog/2021/03/cluster-api-provider/
+- https://kubernetes.io/docs/setup/production-environment/tools/kops/
 
 
  
