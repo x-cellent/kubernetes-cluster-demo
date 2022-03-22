@@ -75,8 +75,11 @@ Among the traits that make kops appealing are:
 ### Prerequisites 📋
 - Kops (v1.22.3+)
 - Ansible (v2.10.15+)
+- kubectl (v1.23.1+)
 - AWS account
 - A dns domain
+- aws cli
+- jq (vjq-1.6+)
 - Python Libraries: boto3, jinja2
 
 ### Deployment 
@@ -86,10 +89,36 @@ git clone https://github.com/x-cellent/kubernetes-cluster-demo
 ```
 - Create a domain for your cluster, otherwise you can use a gossip based domain
 
-kops employs DNS for discovery both inside and outside the cluster, so clients can reach the kubernetes API server. Therefore, We need to prepare somewhere to produce the appropriate DNS records before we can build a Kubernetes cluster with kops.
+kops employs DNS for discovery both inside and outside the cluster, so clients can reach the kubernetes API server. Therefore, we need to create the appropriate DNS records before we can build a Kubernetes cluster with kops.
 
-For more information, take a look at [aws and dns congiguration](https://kops.sigs.k8s.io/getting_started/aws/)
- 
+If you register this domain with AWS, a Route 53 hosted zone will be generated for you. Also, this domain could also be registered with a different registrar, for which you can create a Route 53 hosted zone. With the domain registrar, specify the name server (NS) records from the created zone as NS records.
+
+In this scenario, we have purchased a parent domain: "xc-cloud.net" with another provider. 
+
+Using the AWS CLI, create a Route 53 hosted zone. Make sure to have downloaded jq before.
+```
+ID=$(uuidgen) && \
+aws route53 create-hosted-zone \
+--name cluster.kubernetes-aws.io \
+--caller-reference $ID \
+| jq .DelegationSet.NameServers
+```
+
+which will output the ns name servers required to be registered with your dns registrar. 
+
+Besides a sample output is going to look like this:
+```
+[
+"ns-xx-awsdns-11.com",
+"ns-xxx.awsdns-53.co.uk",
+"ns-xxx.awsdns-40.net",
+"ns-xxx.awsdns-10.org"
+]
+```
+
+Afterwards, add the (NS) records with your dns provider.
+
+For more information, take a look at [aws and dns configuration](https://kops.sigs.k8s.io/getting_started/aws/) and https://aws.amazon.com/blogs/compute/kubernetes-clusters-aws-kops/.
 
 - Make sure to export your amazon credentials
 ```
@@ -350,6 +379,7 @@ In the end, either approach — managed or unmanaged Kubernetes — will yield a
 - https://metal-stack.io/blog/2019/04/why-metal-stack/
 - https://metal-stack.io/blog/2021/03/cluster-api-provider/
 - https://kubernetes.io/docs/setup/production-environment/tools/kops/
+- https://aws.amazon.com/blogs/compute/kubernetes-clusters-aws-kops/
 
 
  
