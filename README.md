@@ -95,7 +95,7 @@ Among the traits that make kops appealing are:
 - For dry-runs, a state-sync model was used, as well as automated idempotency.
 - Terraform configuration generation capability
 - Custom kubectl add-ons are supported.
-- 
+
 ### Infrastructure details
 
 ![cluster diagram](images/lb_ingress.png) [[1]](https://aws.amazon.com/blogs/opensource/network-load-balancer-nginx-ingress-controller-eks/)
