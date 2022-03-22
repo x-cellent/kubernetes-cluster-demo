@@ -87,7 +87,7 @@ Among the traits that make kops appealing are:
 ```
 git clone https://github.com/x-cellent/kubernetes-cluster-demo
 ```
-- Create a domain for your cluster, otherwise you can use a gossip based domain
+- Create a domain for your cluster, otherwise you can use a gossip based domains:
 
 kops employs DNS for discovery both inside and outside the cluster, so clients can reach the kubernetes API server. Therefore, we need to create the appropriate DNS records before we can build a Kubernetes cluster with kops.
 
@@ -119,6 +119,8 @@ Besides a sample output is going to look like this:
 Afterwards, add the (NS) records to your dns provider you purchased the parent domain with.
 
 For more information, take a look at some useful resources such as: [aws and dns configuration](https://kops.sigs.k8s.io/getting_started/aws/) and [AWS using KOPS](https://aws.amazon.com/blogs/compute/kubernetes-clusters-aws-kops/).
+
+For more information on Gossip based domains not requiring a hosted DNS service, check [GOSSIP dns](https://kops.sigs.k8s.io/gossip/).
 
 - Make sure to export your amazon credentials
 ```
