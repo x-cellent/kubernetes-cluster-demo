@@ -98,7 +98,7 @@ Among the traits that make kops appealing are:
 
 ### Infrastructure details
 
-<img src="images/lb_ingress.png" width="500" height="500" /> [[1]](https://aws.amazon.com/blogs/opensource/network-load-balancer-nginx-ingress-controller-eks/)
+<img src="images/lb_ingress.png" width="300" height="350" /> [[1]](https://aws.amazon.com/blogs/opensource/network-load-balancer-nginx-ingress-controller-eks/)
 
 ### Prerequisites 📋
 - Kops (v1.22.3+)
