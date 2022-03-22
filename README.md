@@ -4,6 +4,7 @@
 
 ### Overview 🔧
 
+
 Kubernetes clusters can be controlled by the user (self-managed) or by a cloud service provider (Provider managed Kubernetes). Also, the first issue most teams ask themselves when planning a Kubernetes installation is whether to employ a managed Kubernetes service – such as Amazon AKS, Azure Kubernetes Service, or another public cloud-based Kubernetes platform – or to deploy and operate Kubernetes on their own infrastructure. Kubernetes provider handles at least some of the provisioning and maintenance duties required to keep clusters running. Therefore, a managed Kubernetes service is nearly always easier to set up and maintain.
 
 Moreover, it is worth mentioning that managed Kubernetes design relies on vendor-owned tools and (in most instances) infrastructure since it has the security disadvantage of limiting the degree of control and privacy that users may obtain. Moreover, if you do not have a compelling technical or legal reason to use an on-premises self-managed cluster, consider a managed Kubernetes service. Self-managed clusters necessitate a high level of specialized expertise among your staff, as well as continuous infrastructure and maintenance costs.
@@ -44,6 +45,7 @@ among the tools used to spawn and manage a kubernetes clusters, hereby I have li
 - Kops – a tool for creating/deleting, controlling, and upgrading production-based clusters from the command line. It is used to manage the Kubernetes cluster’s entire life cycle.
 - Kubernetes Dashboard – a web-based user interface that allows users to control and troubleshoot the apps in the cluster, as well as monitor the whole cluster.
 - Prometheus – a monitoring & analyzing system which is extremely useful and informative while being simple to integrate and use.
+
 
 #### Kubernetes clusters on bare-metal servers with metal-stack
 
@@ -101,8 +103,11 @@ Among the traits that make kops appealing are:
 ### Prerequisites 📋
 - Kops (v1.22.3+)
 - Ansible (v2.10.15+)
+- kubectl (v1.23.1+)
 - AWS account
 - A dns domain
+- aws cli
+- jq (vjq-1.6+)
 - Python Libraries: boto3, jinja2
 
 ### Deployment 
@@ -110,7 +115,50 @@ Among the traits that make kops appealing are:
 ```
 git clone https://github.com/x-cellent/kubernetes-cluster-demo
 ```
-- Create a domain for your cluster, otherwise you can use a gossip based domain
+- Moreover, you have to install kops, for which we have luckily provided some scripts. First, make sure to modify the version to be installed at [vars.yaml](group_vars/all/vars.yaml):
+```
+kops_version: 1.22.3
+```
+and afterwards, execute the following command with sudo:
+```
+sudo ansible-playbook kops-installation.yml
+```
+Furthermore, you can also install it manually instead by means of the following [guide](https://kops.sigs.k8s.io/install/).
+
+- Create a domain for your cluster, otherwise you can use a gossip based domains:
+
+kops employs DNS for discovery both inside and outside the cluster, so clients can reach the kubernetes API server. Therefore, we need to create the appropriate DNS records before we can build a Kubernetes cluster with kops.
+
+If you register this domain with AWS, a Route 53 hosted zone will be generated for you. Also, this domain could also be registered with a different registrar, for which you can create a Route 53 hosted zone. With the domain registrar, specify the name server (NS) records from the created zone as NS records.
+
+In this scenario, we have purchased a parent domain: "xc-cloud.net" with another provider. 
+
+Using the AWS CLI, create a Route 53 hosted zone. Make sure to have downloaded jq before.
+```
+ID=$(uuidgen) && \
+aws route53 create-hosted-zone \
+--name kops-xc.xc-cloud.net \
+--caller-reference $ID \
+| jq .DelegationSet.NameServers
+```
+
+which will output the ns name servers required to be registered with your dns registrar. We have utilized the **kops-xc.xc-cloud.net** subdomain in this case.
+
+Besides a sample output is going to look like this:
+```
+[
+"ns-xx-awsdns-11.com",
+"ns-xxx.awsdns-53.co.uk",
+"ns-xxx.awsdns-40.net",
+"ns-xxx.awsdns-10.org"
+]
+```
+
+Afterwards, add the (NS) records to your dns provider you purchased the parent domain with.
+
+For more information, take a look at some useful resources such as: [aws and dns configuration](https://kops.sigs.k8s.io/getting_started/aws/) and [AWS using KOPS](https://aws.amazon.com/blogs/compute/kubernetes-clusters-aws-kops/).
+
+For further instructions on Gossip based domains not requiring a hosted DNS service, check [Gossip dns](https://kops.sigs.k8s.io/gossip/).
 
 - Make sure to export your amazon credentials
 ```
@@ -118,9 +166,10 @@ export AWS_ACCESS_KEY_ID="YOUR_AMAZON_ACCESS_KEY"
 export AWS_SECRET_ACCESS_KEY="YOUR_AMAZON_SECRET_ACCESS_KEY"
 export AWS_SESSION_TOKEN="YOUR_AMAZON_SESSION_TOKEN"
 ```
-- change infrastructure details for kops scripts.
+- Change infrastructure details for kops scripts at [vars.yaml](group_vars/all/vars.yaml)
 ```
-cat group_vars/all/vars.yaml
+cat group_vars/all/vars.yaml 
+
 cluster_name: kops-xc.xc-cloud.net #kub-xcellent.xc-cloud.net
 #cluster_name: kubernetes.xc-cloud.net
 state_store: s3://kops-cluster-xc-test
@@ -128,6 +177,7 @@ state_store: s3://kops-cluster-xc-test
 ## Remote access
 ssh_public_key: ~/.ssh/id_rsa.pub
 
+kops_version: 1.22.3
 
 ## Regions / Availability zones
 aws_region: eu-central-1
@@ -258,7 +308,7 @@ clusterAutoscaler:
   expander: least-waste
   memoryRequest: 50Mi
   newPodScaleUpDelay: 0s
-  scaleDownDelayAfterAdd: 10m0s
+  scaleDownDelayAfterAdd: 4m0s
   scaleDownUtilizationThreshold: "0.5"
   skipNodesWithLocalStorage: false
   skipNodesWithSystemPods: false
@@ -338,7 +388,7 @@ In a nutshell:
     - You are in charge of maintaining VMs
     - Eg: KOPS or Kubespray on AWS 
 
-  - Managed Solutions:
+  - Managed Solutions
     - Kubernetes-As-A-Service
     - Provider provisions VMs
     - Provider installs Kubernetes
@@ -370,6 +420,8 @@ In the end, either approach — managed or unmanaged Kubernetes — will yield a
 - https://ubuntu.com/blog/understanding-bare-metal-kubernetes
 - https://metal-stack.io/blog/2019/04/why-metal-stack/
 - https://metal-stack.io/blog/2021/03/cluster-api-provider/
+- https://kubernetes.io/docs/setup/production-environment/tools/kops/
+- https://aws.amazon.com/blogs/compute/kubernetes-clusters-aws-kops/
 - https://docs.metal-stack.io/stable/overview/comparison/#Gardener
 
 
