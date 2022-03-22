@@ -87,6 +87,16 @@ Among the traits that make kops appealing are:
 ```
 git clone https://github.com/x-cellent/kubernetes-cluster-demo
 ```
+- Moreover, you have to install kops and luckily we have provided some scripts to install it. First, make sure to modify the version to be installed at [vars.yaml](group_vars/all/vars.yaml):
+```
+kops_version: 1.22.3
+```
+and afterwards, execute the following command with sudo:
+```
+sudo ansible-playbook install-kops.yaml
+```
+Furthermore, you can also install it manually instead by means of the following [guide](https://kops.sigs.k8s.io/install/).
+
 - Create a domain for your cluster, otherwise you can use a gossip based domains:
 
 kops employs DNS for discovery both inside and outside the cluster, so clients can reach the kubernetes API server. Therefore, we need to create the appropriate DNS records before we can build a Kubernetes cluster with kops.
@@ -120,7 +130,7 @@ Afterwards, add the (NS) records to your dns provider you purchased the parent d
 
 For more information, take a look at some useful resources such as: [aws and dns configuration](https://kops.sigs.k8s.io/getting_started/aws/) and [AWS using KOPS](https://aws.amazon.com/blogs/compute/kubernetes-clusters-aws-kops/).
 
-For more information on Gossip based domains not requiring a hosted DNS service, check [GOSSIP dns](https://kops.sigs.k8s.io/gossip/).
+For further instructions on Gossip based domains not requiring a hosted DNS service, check [Gossip dns](https://kops.sigs.k8s.io/gossip/).
 
 - Make sure to export your amazon credentials
 ```
@@ -128,9 +138,10 @@ export AWS_ACCESS_KEY_ID="YOUR_AMAZON_ACCESS_KEY"
 export AWS_SECRET_ACCESS_KEY="YOUR_AMAZON_SECRET_ACCESS_KEY"
 export AWS_SESSION_TOKEN="YOUR_AMAZON_SESSION_TOKEN"
 ```
-- change infrastructure details for kops scripts.
+- change infrastructure details for kops scripts at [vars.yaml](group_vars/all/vars.yaml)
 ```
-cat group_vars/all/vars.yaml
+cat group_vars/all/vars.yaml 
+
 cluster_name: kops-xc.xc-cloud.net #kub-xcellent.xc-cloud.net
 #cluster_name: kubernetes.xc-cloud.net
 state_store: s3://kops-cluster-xc-test
