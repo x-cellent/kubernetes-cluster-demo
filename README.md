@@ -81,6 +81,7 @@ It's built to scale to tens of thousands of clusters at a number of IaaS provide
 [Kubernetes Cloud Controller Manager](https://github.com/metal-stack/metal-ccm) and [Gardener extension provider](https://github.com/metal-stack/gardener-extension-provider-metal) can be used to make Kubernetes work well with metal-stack. Failed machines will be immediately replaced with this in place, and you may even use the Kubernetes cluster autoscaler for automatic bare-metal server provisioning.
 
 For learning more about Gardener with metal-stack, go to [Gardener](https://metal-stack.io/blog/2019/04/why-metal-stack/).
+
 ### kops stands for Kubernetes Operations.
 "We like to think of it as kubectl for clusters," says the kops GitHub website. kops is a command line interface (CLI) tool that has implemented the major verbs of cluster management. 
 
@@ -114,7 +115,7 @@ Among the traits that make kops appealing are:
 ```
 git clone https://github.com/x-cellent/kubernetes-cluster-demo
 ```
-- Moreover, you have to install kops and luckily we have provided some scripts to install it. First, make sure to modify the version to be installed at [vars.yaml](group_vars/all/vars.yaml):
+- Moreover, you have to install kops, for which we have luckily provided some scripts. First, make sure to modify the version to be installed at [vars.yaml](group_vars/all/vars.yaml):
 ```
 kops_version: 1.22.3
 ```
@@ -307,7 +308,7 @@ clusterAutoscaler:
   expander: least-waste
   memoryRequest: 50Mi
   newPodScaleUpDelay: 0s
-  scaleDownDelayAfterAdd: 10m0s
+  scaleDownDelayAfterAdd: 4m0s
   scaleDownUtilizationThreshold: "0.5"
   skipNodesWithLocalStorage: false
   skipNodesWithSystemPods: false
