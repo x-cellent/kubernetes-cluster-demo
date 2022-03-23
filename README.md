@@ -115,7 +115,7 @@ Among the traits that make kops appealing are:
 ```
 git clone https://github.com/x-cellent/kubernetes-cluster-demo
 ```
-- Moreover, you have to install kops, for which we have luckily provided some scripts. First, make sure to modify the version to be installed at [vars.yaml](group_vars/all/vars.yaml):
+- Moreover, you have to install kops, for which we have luckily provided some scripts. First, make sure to modify the version to be installed in [vars.yaml](group_vars/all/vars.yaml):
 ```
 kops_version: 1.22.3
 ```
@@ -388,7 +388,7 @@ In a nutshell:
     - You are in charge of maintaining VMs
     - Eg: KOPS or Kubespray on AWS 
 
-  - Managed Solutions
+  - Managed Solutions:
     - Kubernetes-As-A-Service
     - Provider provisions VMs
     - Provider installs Kubernetes
