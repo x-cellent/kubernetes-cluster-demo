@@ -407,7 +407,7 @@ which will delete both: the cluster as well as the S3 Bucket.
 ### Conclusion
 In the end, either approach — managed or unmanaged Kubernetes — will yield a functional Kubernetes environment. Whether one strategy is better for your team than another is determined by your level of Kubernetes expertise, how quickly you want to get your clusters up and running, and how important it is for you to have complete control over how your clusters are designed and configured.
 
-## Authors ✒️
+### Authors ✒️
 
 * **Carlos Klinsmann** - *First Version*.
 
