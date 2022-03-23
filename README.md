@@ -115,7 +115,7 @@ Among the traits that make kops appealing are:
 ```
 git clone https://github.com/x-cellent/kubernetes-cluster-demo
 ```
-- Moreover, you have to install kops, for which we have luckily provided some scripts. First, make sure to modify the version to be installed at [vars.yaml](group_vars/all/vars.yaml):
+- Moreover, you have to install kops, for which we have luckily provided some scripts. First, make sure to modify the version to be installed in [vars.yaml](group_vars/all/vars.yaml):
 ```
 kops_version: 1.22.3
 ```
@@ -166,7 +166,7 @@ export AWS_ACCESS_KEY_ID="YOUR_AMAZON_ACCESS_KEY"
 export AWS_SECRET_ACCESS_KEY="YOUR_AMAZON_SECRET_ACCESS_KEY"
 export AWS_SESSION_TOKEN="YOUR_AMAZON_SESSION_TOKEN"
 ```
-- Change infrastructure details for kops scripts at [vars.yaml](group_vars/all/vars.yaml)
+- Change infrastructure details for kops scripts in [vars.yaml](group_vars/all/vars.yaml)
 ```
 cat group_vars/all/vars.yaml 
 
@@ -388,7 +388,7 @@ In a nutshell:
     - You are in charge of maintaining VMs
     - Eg: KOPS or Kubespray on AWS 
 
-  - Managed Solutions
+  - Managed Solutions:
     - Kubernetes-As-A-Service
     - Provider provisions VMs
     - Provider installs Kubernetes
@@ -407,6 +407,9 @@ which will delete both: the cluster as well as the S3 Bucket.
 ### Conclusion
 In the end, either approach — managed or unmanaged Kubernetes — will yield a functional Kubernetes environment. Whether one strategy is better for your team than another is determined by your level of Kubernetes expertise, how quickly you want to get your clusters up and running, and how important it is for you to have complete control over how your clusters are designed and configured.
 
+### Authors ✒️
+
+* **Carlos Klinsmann** - *First Version*.
 
 ### References
 - https://opsani.com/blog/kubernetes-cluster-autoscaling-overview/ 
