@@ -5,9 +5,9 @@
 ### Overview 🔧
 
 
-Kubernetes clusters can be controlled by the user (self-managed) or by a cloud service provider (provider-managed Kubernetes). Also, the first issue most teams ask themselves when planning a Kubernetes installation is whether to employ a managed Kubernetes service – such as Amazon AKS, Azure Kubernetes Service, or another public cloud-based Kubernetes platform – or to deploy and operate Kubernetes on their own infrastructure. Kubernetes providers handle at least some of the provisioning and maintenance duties required to keep clusters running. Therefore, a managed Kubernetes service is nearly always easier to set up and maintain.
+Kubernetes clusters can be controlled by the user (self-managed) or by a cloud service provider (provider-managed Kubernetes). Also, the first issue most teams ask themselves when planning a Kubernetes installation is whether to employ a managed Kubernetes service – such as Amazon AKS, Azure Kubernetes Service, or another public cloud-based Kubernetes platform – or to deploy and operate Kubernetes on their own infrastructure. Kubernetes providers handle some of the provisioning and maintenance duties required to keep clusters running. 
 
-Moreover, it is worth mentioning that managed Kubernetes offerings almost always rely on vendor-owned tools and (in most instances) the provider infrastructure. This has the security disadvantage of limiting the degree of control and privacy that users may obtain. If you do not have a compelling technical or legal reason to use an on-premise self-managed cluster, consider a managed Kubernetes service. Self-managed clusters necessitate a high level of specialized expertise among your staff, as well as continuous infrastructure and maintenance costs. <-- This paragraph sounds like it would fit a bit better into the next section
+Moreover, it is worth mentioning that managed Kubernetes offerings almost always rely on vendor-owned tools and (in most instances) the provider infrastructure. This has the security disadvantage of limiting the degree of control and privacy that users may obtain. 
 
 In order to demonstrate the advantages and disadvantages of managed Kubernetes and self-managed Kubernetes, we will create a self-managed Kubernetes cluster with Kops.
 
@@ -15,21 +15,17 @@ In addition, some open source alternatives to launching Kubernetes clusters on b
 - [Cluster API](https://metal-stack.io/blog/2021/03/cluster-api-provider/).
 - [Gardener](https://gardener.cloud/).
 
-<-- Idea, maybe you like it: It feels to me like you are giving away your conclusions early. I know in scientific papers this is what you need to do but for blog articles I think you do not have to. For example: "managed Kubernetes is nearly always easier" or "consider a manged service" --> why should I read on then? Discuss all these great points you are mentioning and then in the end summarize and enlighten the reader with your conclusion. <-- Maybe also include a paragraph on pricing and costs
-<-- Maybe it's better for the structure of the article to move the entire Gardener, CAPI and metal-stack paragraphs into one big section after the tutorial and do something like "After that, we will also discuss some more sophisticated, full-blown open source solutions for cluster orchestration, striving interesting topics like on-premise infrastructure and multi-cloud". With this you do not "overwhelm" the reader with too many things upfront and make him want to read till the end <-- As you address Load Balancing later in this article, you could also mention the metal-stack + MetalLB solution in such a section (load balancing through BGP)
-
 ### What Does It Mean to Have “Managed Kubernetes”?
 
 Despite the fact that Kubernetes is free source, many firms who want to use it don't have the skills or resources to set up and manage the cluster. Managed Kubernetes providers assist those interested in using Kubernetes by providing the necessary support and management for Kubernetes clusters. A managed Kubernetes deployment should offer users a painless control plane, simple deployment options, and ongoing Kubernetes maintenance, allowing them to focus on their company and getting their apps to market.
 
-Many cloud providers offer managed Kubernetes services, however the configuration options and degree of support they provide to their customers vary slightly.
+Many cloud providers offer managed Kubernetes services, however the configuration options and degree of support they provide to their customers vary slightly. If you do not have a compelling technical or legal reason to use an on-premise self-managed cluster, consider a managed Kubernetes service. Self-managed clusters necessitate a high level of specialized expertise among your staff, as well as continuous infrastructure and maintenance costs.
 
 A managed Kubernetes cluster is preferable to a self-managed one if we take the following into consideration:
 
 - A single cloud
 - You do not require the most recent Kubernetes releases.
 - You're ready to delegate vulnerability patching to your cloud provider.
-
 
 ### Self-Managed Clusters 📋
 
@@ -38,52 +34,11 @@ You have control over the management layer on a self-managed Kubernetes Cluster,
 This also gives configuration flexibility, allowing you to setup the cluster and nodes however you wish, rather than having to deal with the configuration options allowed by a managed service.
 
 #### Kubernetes tools to Create and Control Clusters 📖
+
 Among the tools used to spawn and manage a Kubernetes clusters, hereby I have listed some of them:
 - Kubeadm – a toolkit (from Kubernetes!), providing the best-practice ways to create Kubernetes clusters. It is aimed at ensuring a quick and easy set up of the minimum viable cluster.
 - Kubespray – a composition of Ansible tools for performing configuration and deployment-related tasks. It is compatible with any cloud service provider and is backed by Kubeadm.
-- Kubewatch – a native watcher running in the cluster that monitors any changes in the system and publishes notifications in communication channels.
-- Kubetail – a bash script allowing to “tail” logs into a single stream from many pods.
-- Istio – an open-source platform ensuring secure and manageable traffic flow, microservices integration, as well as telemetry data integration.
-- HELM – a tool that allows users to manage the so-called Helm charts (Kubernetes packaged resources). You can find popular charts or create new ones for your application.
 - Kops – a tool for creating/deleting, controlling, and upgrading production-based clusters from the command line. It is used to manage the Kubernetes cluster’s entire life cycle.
-- Kubernetes Dashboard – a web-based user interface that allows users to control and troubleshoot the apps in the cluster, as well as monitor the whole cluster.
-- Prometheus – a monitoring & analyzing system which is extremely useful and informative while being simple to integrate and use.
-<-- maybe put links on them? Not sure if all the tools really relate to the topic of this article?
-
-#### Kubernetes Clusters on Bare-Metal Servers With metal-stack
-
-##### metal-stack
-
-Regarding the management and access of data and computing resources in any regulated enterprise, there are security concerns and rules one has to take into account for data protection and ownership. Thus, using the public cloud isn't appropriate for all workloads. As a result, identifying an enterprise-ready stack for our own datacenter, as well as creating cloud native digital competency criteria are key tasks we ought to tackle for regulated enterprises.
-
-Besides, metal-stack is a piece of open source software that provides an API for provisioning and managing physical servers in a data center. We refer to this product as Metal-as-a-Service (MaaS) or bare metal cloud, which is also known as an IaaS provider for bare metal focused on creating on-premise Kubernetes clusters.
-
-Key advantages of using Kubernetes on bare-metal servers:
-- Performance & predictability
-- Hardware compatibility and flexibility
-- Security and management
-
-##### Kubernetes Clusters-as-a-Service
-
-There are numerous open source tools available to assist in the creation and maintenance of single Kubernetes clusters. However, the more clusters you require, the more difficult it is to operate, monitor, manage, and keep them all alive and up to date. That is precisely the focus of projects such as [Cluster API](https://metal-stack.io/blog/2021/03/cluster-api-provider/) and [Gardener](https://gardener.cloud/), which are designed to manage Kubernetes clusters as a service, rather than just another provisioning tool. It offers Kubernetes-compliant clusters on a variety of cloud providers and bare-metal infrastructure, as well as the flexibility to expand hundreds or thousands of them.
-
-Some alternatives for managing kubernetes clusters on metal-stack:
-
-- Cluster API
-
-The Kubernetes Special Interest Group (SIG) Cluster Lifecycle started Cluster API with the purpose of making deploying, updating, and operating numerous Kubernetes clusters easier. It uses Kubernetes-style APIs to automate cluster lifecycle management in this way. Clusters and nodes can be managed similarly as with Pods and Deployments.
-
-Besides, it offers multiple capabilities such as a Cluster resource for managing clusters, a Machine resource (similar to the Pod resource for apps) and a MachineDeployment resource for managing machines (comparable to the Deployment resource for apps).
-
-For more information on Cluster API, go to [Cluster API](https://metal-stack.io/blog/2021/03/cluster-api-provider/). <-- should maybe point to the general Cluster API project and not our blog article?
-
-- Gardener
-
-It's built to scale to tens of thousands of clusters at a number of IaaS providers, regardless of whether they're in the cloud or on premise, virtualized or bare metal. It not only manages the construction and deletion of Kubernetes clusters, but it also handles the automatic updating or upgrading of Kubernetes and the operating system of the worker nodes. Gardener is built in such a way that it specifies clusters, workers, and all other components as Kubernetes resources (such as pods and deployments) and brings them back to the desired state. The configuration options are very versatile and the quality of the project is production-grade.
-
-However, Gardener requires a cloud provider in order to function, so you will need a piece of software like metal-stack when you want to use it on-prem. The metal-stack implementation of the [Kubernetes Cloud Controller Manager](https://github.com/metal-stack/metal-ccm) and the respective [Gardener extension provider](https://github.com/metal-stack/gardener-extension-provider-metal) can be used to integrate metal-stack smoothly with Gardener and Kubernetes. Failed machines will be immediately replaced with this in place, and you may even use the Kubernetes cluster autoscaler for automatic bare-metal server provisioning.
-
-For learning more about Gardener with metal-stack, go to [Gardener](https://metal-stack.io/blog/2019/04/why-metal-stack/).
 
 ### kops Stands for Kubernetes Operations
 "We like to think of it as kubectl for clusters," says the kops GitHub website. kops is a command line interface (CLI) tool that has implemented the major verbs of cluster management.
@@ -384,6 +339,44 @@ kubectl get services webservice -o jsonpath="{.status.loadBalancer.ingress[*].ho
 ```
 Note: Classic Load Balancers are about to be deprecated soon and should be migrated to either Network Load Balancers or Application Load Balancers within AWS. AWS LB controller with Kops is compatible with Kubernetes v1.21.9.
 
+
+#### Kubernetes Clusters on Bare-Metal Servers With metal-stack
+
+We will also discuss some more enhanced, full-blown open source solutions for cluster orchestration, striving interesting topics like on-premise infrastructure and multi-cloud.
+
+##### metal-stack
+
+Regarding the management and access of data and computing resources in any regulated enterprise, there are security concerns and rules one has to take into account for data protection and ownership. Thus, using the public cloud isn't appropriate for all workloads. As a result, identifying an enterprise-ready stack for our own datacenter, as well as creating cloud native digital competency criteria are key tasks we ought to tackle for regulated enterprises.
+
+Besides, metal-stack is a piece of open source software that provides an API for provisioning and managing physical servers in a data center. We refer to this product as Metal-as-a-Service (MaaS) or bare metal cloud, which is also known as an IaaS provider for bare metal focused on creating on-premise Kubernetes clusters.
+
+Key advantages of using Kubernetes on bare-metal servers:
+- Performance & predictability
+- Hardware compatibility and flexibility
+- Security and management
+
+##### Kubernetes Clusters-as-a-Service
+
+There are numerous open source tools available to assist in the creation and maintenance of single Kubernetes clusters. However, the more clusters you require, the more difficult it is to operate, monitor, manage, and keep them all alive and up to date. That is precisely the focus of projects such as [Cluster API](https://metal-stack.io/blog/2021/03/cluster-api-provider/) and [Gardener](https://gardener.cloud/), which are designed to manage Kubernetes clusters as a service, rather than just another provisioning tool. It offers Kubernetes-compliant clusters on a variety of cloud providers and bare-metal infrastructure, as well as the flexibility to expand hundreds or thousands of them.
+
+Some alternatives for managing kubernetes clusters on metal-stack:
+
+- Cluster API
+
+The Kubernetes Special Interest Group (SIG) Cluster Lifecycle started Cluster API with the purpose of making deploying, updating, and operating numerous Kubernetes clusters easier. It uses Kubernetes-style APIs to automate cluster lifecycle management in this way. Clusters and nodes can be managed similarly as with Pods and Deployments.
+
+Besides, it offers multiple capabilities such as a Cluster resource for managing clusters, a Machine resource (similar to the Pod resource for apps) and a MachineDeployment resource for managing machines (comparable to the Deployment resource for apps).
+
+For more information on Cluster API, go to [Cluster API](https://metal-stack.io/blog/2021/03/cluster-api-provider/). <-- should maybe point to the general Cluster API project and not our blog article?
+
+- Gardener
+
+It's built to scale to tens of thousands of clusters at a number of IaaS providers, regardless of whether they're in the cloud or on premise, virtualized or bare metal. It not only manages the construction and deletion of Kubernetes clusters, but it also handles the automatic updating or upgrading of Kubernetes and the operating system of the worker nodes. Gardener is built in such a way that it specifies clusters, workers, and all other components as Kubernetes resources (such as pods and deployments) and brings them back to the desired state. The configuration options are very versatile and the quality of the project is production-grade.
+
+However, Gardener requires a cloud provider in order to function, so you will need a piece of software like metal-stack when you want to use it on-prem. The metal-stack implementation of the [Kubernetes Cloud Controller Manager](https://github.com/metal-stack/metal-ccm) and the respective [Gardener extension provider](https://github.com/metal-stack/gardener-extension-provider-metal) can be used to integrate metal-stack smoothly with Gardener and Kubernetes. Failed machines will be immediately replaced with this in place, and you may even use the Kubernetes cluster autoscaler for automatic bare-metal server provisioning.
+
+For learning more about Gardener with metal-stack, go to [Gardener](https://metal-stack.io/blog/2019/04/why-metal-stack/).
+
 ### Comparison
 - The provider-managed Kubernetes service reduces the time and effort required to administer and maintain a cluster by taking care of the master node.
 
@@ -391,7 +384,7 @@ Note: Classic Load Balancers are about to be deprecated soon and should be migra
 
 In a nutshell:
   - Self-managed solutions:
-    - You Provision VMs <-- when you talk about metal-stack, too, you don't work with virtual machines -- you provision the infrastructure, you configure the servers
+    - You Provision the infrastructure and configure the servers
     - You Configure VMs
     - You use Scripts to build & deploy Cluster
     - You are in charge of maintaining VMs
@@ -403,8 +396,6 @@ In a nutshell:
     - Provider installs Kubernetes
     - Provider manages VMs
     - Eg: Google Container Engine (GKE), EKS
-
-<-- I like this clear list, however it's a bit redundant with what was in the beginning... maybe it's just me, but I think it would fit better into the beginning section
 
 ### Deleting Cluster and Resources Generated by Kops
 
