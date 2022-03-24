@@ -202,12 +202,6 @@ bastion: true
 # Master configuration
 master_size: t2.small
 master_count: 3
-#master_volume_size: 50
-# Use master_max_price if you want to use spot instances.
-# Useful to reduce cost during testing
-#master_max_price: 0.05
-# Use master_profile if you want custom iam policies
-#master_profile: arn:aws:iam::1234567890108:instance-profile/kops-custom-master-role
 
 # Node configuration
 node_size: t2.small
